@@ -3,7 +3,7 @@ import java.util.Properties
 plugins {
     kotlin("android")
     kotlin("plugin.serialization")
-    
+
     id("com.android.application")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     id("com.google.gms.google-services")

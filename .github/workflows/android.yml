@@ -18,11 +18,11 @@ jobs:
         distribution: 'temurin'
         cache: gradle
     - name: Grant execute permission for gradlew
-      run: |
-        cd android/
-        chmod +x gradlew
+      run: chmod +x gradlew
+      working-directory: android
     - name: Build with Gradle
       run: ./gradlew build
+      working-directory: android
 
   lint:
     runs-on: ubuntu-latest
@@ -35,12 +35,11 @@ jobs:
         distribution: 'temurin'
         cache: gradle
     - name: Grant execute permission for gradlew
-      run: |
-        cd android/
-        chmod +x gradlew
+      run: chmod +x gradlew
+      working-directory: android
     - name: Run ktlint
       run: ./gradlew ktlintCheck
-
+      working-directory: android
 
   unit-test:
     runs-on: ubuntu-latest
@@ -53,11 +52,11 @@ jobs:
         distribution: 'temurin'
         cache: gradle
     - name: Grant execute permission for gradlew
-      run: |
-        cd android/
-        chmod +x gradlew
+      run: chmod +x gradlew
+      working-directory: android
     - name: Build with Gradle
       run: ./gradlew test
+      working-directory: android
 
   code-ql:
     runs-on: ubuntu-latest
@@ -70,9 +69,9 @@ jobs:
         distribution: 'temurin'
         cache: gradle
     - name: Grant execute permission for gradlew
-      run: |
-        cd android/
-        chmod +x gradlew
+      run: chmod +x gradlew
+      working-directory: android
     - name: Build with Gradle
       run: ./gradlew detekt
+      working-directory: android
 
