@@ -81,7 +81,10 @@ private fun MemoryDialog(
                     ) {
                         PhotoView(
                             uri = memory.photo,
-                            contentDescription = stringResource(id = R.string.contentDescription_memory_photo),
+                            contentDescription =
+                                stringResource(
+                                    id = R.string.contentDescription_memory_photo,
+                                ),
                             contentScale = ContentScale.FillWidth,
                         )
                     }

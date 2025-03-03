@@ -1,4 +1,4 @@
-package pl.kwasow.sunshine.ui.screens
+package pl.kwasow.sunshine.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,15 +14,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.extensions.slideComposable
-import pl.kwasow.sunshine.ui.AlbumScreen
-import pl.kwasow.sunshine.ui.HomeScreen
-import pl.kwasow.sunshine.ui.LocationScreen
-import pl.kwasow.sunshine.ui.LoginScreen
-import pl.kwasow.sunshine.ui.MemoriesScreen
-import pl.kwasow.sunshine.ui.MissingYouScreen
-import pl.kwasow.sunshine.ui.MusicScreen
-import pl.kwasow.sunshine.ui.SettingsScreen
-import pl.kwasow.sunshine.ui.WishlistScreen
 import pl.kwasow.sunshine.ui.screens.home.HomeScreen
 import pl.kwasow.sunshine.ui.screens.login.LoginScreen
 import pl.kwasow.sunshine.ui.screens.modules.location.LocationModuleScreen
@@ -36,7 +27,7 @@ import pl.kwasow.sunshine.ui.widgets.music.PlaybackControls
 
 // ====== Public composables
 @Composable
-fun MainComposeView() {
+fun App() {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background,
@@ -134,7 +125,7 @@ private fun SunshineNavHost(
     modifier: Modifier,
     builder: NavGraphBuilder.() -> Unit,
 ) {
-    val viewModel = koinViewModel<MainComposeViewModel>()
+    val viewModel = koinViewModel<AppViewModel>()
 
     NavHost(
         navController = navController,

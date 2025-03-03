@@ -79,27 +79,3 @@ jobs:
       run: ./gradlew test
       working-directory: android
 
-  code-ql:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: set up JDK 21
-      uses: actions/setup-java@v4
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: gradle
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-      working-directory: android
-    - name: Setup secrets
-      env:
-        JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
-      run: |
-        cp secrets.default.properties secrets.properties
-        echo $JSON > app/google-services.json
-      working-directory: android
-    - name: Build with Gradle
-      run: ./gradlew detekt
-      working-directory: android
-

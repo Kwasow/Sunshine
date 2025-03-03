@@ -36,7 +36,11 @@ class SystemManagerImpl(
         }
     }
 
-    override fun cacheMemories(memories: Map<Int, List<Memory>>?) = cacheObject(memories, MEMORIES_CACHE_FILE)
+    override fun cacheMemories(memories: Map<Int, List<Memory>>?) =
+        cacheObject(
+            memories,
+            MEMORIES_CACHE_FILE,
+        )
 
     override fun getCachedMemories(): Map<Int, List<Memory>>? = readCache(MEMORIES_CACHE_FILE)
 

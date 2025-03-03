@@ -75,7 +75,11 @@ class SunshineDownloadService : DownloadService(
         // This will only happen once, because getDownloadManager is guaranteed to be called only once
         // in the life cycle of the process.
         val downloadManager = DownloadUtils.getDownloadManager(this)
-        val helper = DownloadUtils.getDownloadNotificationHelper(this, notificationManager.downloadChannelInfo.channelId)
+        val helper =
+            DownloadUtils.getDownloadNotificationHelper(
+                this,
+                notificationManager.downloadChannelInfo.channelId,
+            )
         downloadManager.addListener(
             TerminalStateNotificationHelper(this, helper, FOREGROUND_NOTIFICATION_ID + 1),
         )
@@ -89,7 +93,10 @@ class SunshineDownloadService : DownloadService(
         downloads: MutableList<Download>,
         notMetRequirements: Int,
     ): Notification {
-        return DownloadUtils.getDownloadNotificationHelper(this, notificationManager.downloadChannelInfo.channelId)
+        return DownloadUtils.getDownloadNotificationHelper(
+            this,
+            notificationManager.downloadChannelInfo.channelId,
+        )
             .buildProgressNotification(
                 this,
                 R.drawable.ic_download,
