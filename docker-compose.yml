@@ -1,0 +1,16 @@
+services:
+  main:
+    build: backend/
+    volumes:
+      - ./backend:/usr/local/apache2/htdocs/sunshine
+    ports:
+      - 8080:8080
+    env_file:
+      - env/development.env
+
+  database:
+    image: mysql:latest
+    volumes:
+      - ./scripts/mysql:/docker-entrypoint-initdb.d
+    env_file:
+      - env/development.env
