@@ -35,7 +35,10 @@ fun SunshineTopAppBar(
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                    contentDescription = stringResource(id = R.string.contentDescription_navigate_back),
+                    contentDescription =
+                        stringResource(
+                            id = R.string.contentDescription_navigate_back,
+                        ),
                 )
             }
         },

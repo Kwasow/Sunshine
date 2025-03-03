@@ -183,7 +183,9 @@ private fun PhotoGalleryPreview() {
             endDate = "2024-01-15",
             title = "Event name",
             description = "This is a description of a memory",
-            photo = "https://en.wikipedia.org/wiki/Photograph#/media/File:Nic%C3%A9phore_Ni%C3%A9pce_Oldest_Photograph_1825.jpg",
+            photo =
+                "https://en.wikipedia.org/wiki/Photograph#/media/" +
+                    "File:Nic%C3%A9phore_Ni%C3%A9pce_Oldest_Photograph_1825.jpg",
         )
 
     PhotoGallery(
@@ -201,7 +203,9 @@ private fun MemoryGalleryPreview() {
             endDate = "2024-01-15",
             title = "Event name",
             description = "This is a description of a memory",
-            photo = "https://en.wikipedia.org/wiki/Photograph#/media/File:Nic%C3%A9phore_Ni%C3%A9pce_Oldest_Photograph_1825.jpg",
+            photo =
+                "https://en.wikipedia.org/wiki/Photograph#/media/" +
+                    "File:Nic%C3%A9phore_Ni%C3%A9pce_Oldest_Photograph_1825.jpg",
         )
 
     MemoryGallery(

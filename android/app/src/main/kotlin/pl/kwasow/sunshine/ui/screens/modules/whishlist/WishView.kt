@@ -126,6 +126,7 @@ private fun Content(
     modifier: Modifier = Modifier,
 ) {
     val linkifiedText = wish.content.linkify()
+    val decoration = if (wish.done) TextDecoration.LineThrough else TextDecoration.None
 
     Column(
         modifier = modifier.padding(top = ButtonDefaults.ContentPadding.calculateTopPadding()),
@@ -135,7 +136,7 @@ private fun Content(
                 text = linkifiedText,
                 style =
                     TextStyle.Default.copy(
-                        textDecoration = if (wish.done) TextDecoration.LineThrough else TextDecoration.None,
+                        textDecoration = decoration,
                     ),
             )
         }
@@ -158,7 +159,10 @@ private fun Actions(
         IconButton(onClick = { expanded = true }) {
             Icon(
                 imageVector = Icons.Outlined.MoreVert,
-                contentDescription = stringResource(id = R.string.contentDescription_three_dot_menu),
+                contentDescription =
+                    stringResource(
+                        id = R.string.contentDescription_three_dot_menu,
+                    ),
                 tint = Color.Gray,
             )
         }
@@ -173,7 +177,10 @@ private fun Actions(
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Edit,
-                            contentDescription = stringResource(id = R.string.contentDescription_edit_icon),
+                            contentDescription =
+                                stringResource(
+                                    id = R.string.contentDescription_edit_icon,
+                                ),
                         )
                     },
                     onClick = {
@@ -186,7 +193,10 @@ private fun Actions(
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Delete,
-                            contentDescription = stringResource(id = R.string.contentDescription_delete_icon),
+                            contentDescription =
+                                stringResource(
+                                    id = R.string.contentDescription_delete_icon,
+                                ),
                         )
                     },
                     onClick = {

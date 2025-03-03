@@ -62,7 +62,10 @@ class AudioManagerImpl(
             ?: Uri.parse(remoteUrl)
     }
 
-    override fun getTrackUri(track: AudioTrack): Uri = Uri.parse("$ALBUMS_URL/${track.albumUuid}/${track.resourceName}")
+    override fun getTrackUri(track: AudioTrack): Uri =
+        Uri.parse(
+            "$ALBUMS_URL/${track.albumUuid}/${track.resourceName}",
+        )
 
     override fun getTrackId(track: AudioTrack): String = "${track.albumUuid}/${track.resourceName}"
 

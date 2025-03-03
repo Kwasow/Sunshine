@@ -104,7 +104,10 @@ class UserManagerImpl(
                     )
                 handleSignIn(result, loginContext)
             } catch (e: GetCredentialException) {
-                SunshineLogger.e("Google login failed - filterByAuthorizedAccounts: $filterAuthorizedAccounts - ($e)")
+                SunshineLogger.e(
+                    "Google login failed - filterByAuthorizedAccounts: " +
+                        "$filterAuthorizedAccounts - ($e)",
+                )
                 onFailed()
             }
         }
@@ -135,7 +138,8 @@ class UserManagerImpl(
         }
     }
 
-    private fun isGoogleCredential(type: String): Boolean = type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
+    private fun isGoogleCredential(type: String): Boolean =
+        type == GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
 
     private fun handleGoogleCredential(
         credential: Credential,

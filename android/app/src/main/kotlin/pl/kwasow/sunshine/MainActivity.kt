@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import org.koin.compose.KoinContext
-import pl.kwasow.sunshine.ui.screens.MainComposeView
+import pl.kwasow.sunshine.ui.App
 import pl.kwasow.sunshine.ui.theme.SunshineTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SunshineTheme {
                 KoinContext {
-                    MainComposeView()
+                    App()
                 }
             }
         }

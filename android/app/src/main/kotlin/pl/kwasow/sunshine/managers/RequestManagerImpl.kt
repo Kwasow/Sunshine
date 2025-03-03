@@ -269,7 +269,9 @@ class RequestManagerImpl(
                     }
                 }
 
-            SunshineLogger.d("Request (auth) to $url [${request.status.value}]: ${request.bodyAsText()}")
+            SunshineLogger.d(
+                "Request (auth) to $url [${request.status.value}]: ${request.bodyAsText()}",
+            )
             return request
         } catch (e: Exception) {
             e.printStackTrace()
@@ -298,7 +300,9 @@ class RequestManagerImpl(
                     }
                 }
 
-            SunshineLogger.d("Request (no auth) to $url [${request.status.value}]: ${request.bodyAsText()}")
+            SunshineLogger.d(
+                "Request (no auth) to $url [${request.status.value}]: ${request.bodyAsText()}",
+            )
             return request
         } catch (e: Exception) {
             e.printStackTrace()

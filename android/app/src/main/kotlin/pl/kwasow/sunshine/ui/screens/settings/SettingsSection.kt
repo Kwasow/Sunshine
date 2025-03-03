@@ -74,7 +74,9 @@ private fun SettingsSectionPreview() {
             SettingsEntry(
                 icon = rememberVectorPainter(image = Icons.Outlined.Add),
                 name = "Entry 3",
-                description = "This is the setting description that is so long that it doesn't fit on the screen",
+                description =
+                    "This is the setting description that is so long that it doesn't" +
+                        "fit on the screen",
                 onClick = {},
             )
         }

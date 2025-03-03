@@ -157,7 +157,9 @@ private fun launchPlayStore(context: Context) {
         context.startActivity(
             Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}"),
+                Uri.parse(
+                    "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}",
+                ),
             ),
         )
     }

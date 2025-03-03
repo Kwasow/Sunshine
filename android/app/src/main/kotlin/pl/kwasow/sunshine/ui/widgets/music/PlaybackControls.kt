@@ -47,8 +47,12 @@ fun PlaybackControls() {
 
     currentTrack.value?.let {
         PlaybackControls(
-            title = it.mediaMetadata.title ?: stringResource(R.string.widget_nowplaying_no_title),
-            artist = it.mediaMetadata.artist ?: stringResource(R.string.widget_nowplaying_no_artist),
+            title =
+                it.mediaMetadata.title
+                    ?: stringResource(R.string.widget_nowplaying_no_title),
+            artist =
+                it.mediaMetadata.artist
+                    ?: stringResource(R.string.widget_nowplaying_no_artist),
             cover = it.mediaMetadata.artworkUri,
         )
     }
@@ -157,7 +161,10 @@ private fun ButtonControls(modifier: Modifier = Modifier) {
         IconButton(onClick = { viewModel.previous() }) {
             Icon(
                 painterResource(id = R.drawable.ic_previous),
-                contentDescription = stringResource(id = R.string.contentDescription_previous_track_icon),
+                contentDescription =
+                    stringResource(
+                        id = R.string.contentDescription_previous_track_icon,
+                    ),
             )
         }
 
@@ -166,7 +173,10 @@ private fun ButtonControls(modifier: Modifier = Modifier) {
         IconButton(onClick = { viewModel.next() }) {
             Icon(
                 painterResource(id = R.drawable.ic_next),
-                contentDescription = stringResource(id = R.string.contentDescription_next_track_icon),
+                contentDescription =
+                    stringResource(
+                        id = R.string.contentDescription_next_track_icon,
+                    ),
             )
         }
     }

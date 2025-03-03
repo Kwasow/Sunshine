@@ -113,7 +113,10 @@ class PlaybackManagerImpl(
                             }
 
                             override fun onPlaybackStateChanged(playbackState: Int) {
-                                if (playbackState == Player.STATE_ENDED || playbackState == Player.STATE_IDLE) {
+                                if (
+                                    playbackState == Player.STATE_ENDED ||
+                                    playbackState == Player.STATE_IDLE
+                                ) {
                                     isPlaybackActive.postValue(false)
                                     isLoading.postValue(true)
                                     currentTrack.postValue(null)

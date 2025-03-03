@@ -6,62 +6,62 @@ require_once __DIR__.'/../../src/helpers/authorization.php';
 use Kreait\Firebase\Exception\MessagingException;
 use Kreait\Firebase\Messaging\CloudMessage;
 
-# Open database connection
+// Open database connection
 $conn = openConnection();
 
-# Check if user is authorized
+// Check if user is authorized
 $user = checkAuthorization($conn);
-if ($user !== NULL) {
-  http_response_code(200);
+if ($user !== null) {
+    http_response_code(200);
 } else {
-  http_response_code(401);
+    http_response_code(401);
 
-  mysqli_close($conn);
-  exit();
+    mysqli_close($conn);
+    exit();
 }
 
-# Get request details
+// Get request details
 $postData = json_decode(file_get_contents('php://input'), true);
 $type = $postData['type'];
 
-# Send message
+// Send message
 $messaging = $GLOBALS['firebaseMessaging'];
-$message = NULL;
+$message = null;
 
 switch ($type) {
-  case 'missing_you':
+case 'missing_you':
     $topic = $user->getMissingYouRecipient()->getUserTopic();
     $data = [
-      'type' => 'missing_you',
-      'name' => $user->getFirstName()
+    'type' => 'missing_you',
+    'name' => $user->getFirstName()
     ];
 
     $message = CloudMessage::withTarget('topic', $topic)
-      ->withData($data);
+    ->withData($data);
     break;
-  case 'request_location':
+case 'request_location':
     $topic = $user->getMissingYouRecipient()->getUserTopic();
     $data = [
-      'type' => 'request_location'
+    'type' => 'request_location'
     ];
 
     $message = CloudMessage::withTarget('topic', $topic)
-      ->withData($data);
+    ->withData($data);
     break;
-  default:
+default:
     break;
 }
 
-if ($message == NULL) {
-  http_response_code(400);
-  error_log("[ERROR] Unknown message type: " . $type);
+if ($message == null) {
+    http_response_code(400);
+    error_log("[ERROR] Unknown message type: " . $type);
 } else {
-  try {
-    $result = $messaging->send($message);
-  } catch (MessagingException $e) {
-    http_response_code(500);
-    error_log("[EXCEPTION]: " . $e->getMessage());
-  }
+    try {
+        $result = $messaging->send($message);
+    } catch (MessagingException $e) {
+        http_response_code(500);
+        error_log("[EXCEPTION]: " . $e->getMessage());
+    }
 }
 
 mysqli_close($conn);
