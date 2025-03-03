@@ -1,0 +1,14 @@
+{
+  "name": "kwasow/sunshine",
+  "description": "The backend for the Sunshine Android app",
+  "type": "project",
+  "license": "proprietary",
+  "require": {
+    "kreait/firebase-php": "^7.0"
+  },
+  "config": {
+    "preferred-install": "vendor",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
+}

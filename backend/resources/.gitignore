@@ -1,0 +1,4 @@
+*
+# Ignore everything apart from these
+!.gitignore
+!.htaccess
