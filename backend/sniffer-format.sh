@@ -1,3 +1,2 @@
-./vendor/bin/phpcbf api/
-./vendor/bin/phpcbf src/
+./vendor/bin/phpcbf api/ src/
 

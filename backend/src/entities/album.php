@@ -1,34 +1,37 @@
 <?php
 
-class Album implements JsonSerializable {
+class Album implements JsonSerializable
+{
   
-  private $id;
-  private $uuid;
-  private $title;
-  private $artist;
-  private $coverName;
-  private $tracks;
+    private $_id;
+    private $_uuid;
+    private $_title;
+    private $_artist;
+    private $_coverName;
+    private $_tracks;
 
 
-  public function __construct($id, $uuid, $title, $artist, $coverName, $tracks) {
-    $this->id = $id;
-    $this->uuid = $uuid;
-    $this->title = $title;
-    $this->artist = $artist;
-    $this->coverName = $coverName;
-    $this->tracks = $tracks;
-  }
+    public function __construct($id, $uuid, $title, $artist, $coverName, $tracks)
+    {
+        $this->_id = $id;
+        $this->_uuid = $uuid;
+        $this->_title = $title;
+        $this->_artist = $artist;
+        $this->_coverName = $coverName;
+        $this->_tracks = $tracks;
+    }
 
-  public function jsonSerialize() {
-    return [
-        'id' => $this->id,
-        'uuid' => $this->uuid,
-        'title' => $this->title,
-        'artist' => $this->artist,
-        'coverName' => $this->coverName,
-        'tracks' => $this->tracks
-    ];
-  }
+    public function jsonSerialize()
+    {
+        return [
+        'id' => $this->_id,
+        'uuid' => $this->_uuid,
+        'title' => $this->_title,
+        'artist' => $this->_artist,
+        'coverName' => $this->_coverName,
+        'tracks' => $this->_tracks
+        ];
+    }
 
 }
 
