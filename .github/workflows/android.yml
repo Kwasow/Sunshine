@@ -20,6 +20,9 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       working-directory: android
+    - name: Copy secrets file
+      run: cp secrets.default.properties secrets.default
+      working-directory: android
     - name: Build with Gradle
       run: ./gradlew build
       working-directory: android
@@ -36,6 +39,9 @@ jobs:
         cache: gradle
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      working-directory: android
+    - name: Copy secrets file
+      run: cp secrets.default.properties secrets.default
       working-directory: android
     - name: Run ktlint
       run: ./gradlew ktlintCheck
@@ -54,6 +60,9 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       working-directory: android
+    - name: Copy secrets file
+      run: cp secrets.default.properties secrets.default
+      working-directory: android
     - name: Build with Gradle
       run: ./gradlew test
       working-directory: android
@@ -70,6 +79,9 @@ jobs:
         cache: gradle
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      working-directory: android
+    - name: Copy secrets file
+      run: cp secrets.default.properties secrets.default
       working-directory: android
     - name: Build with Gradle
       run: ./gradlew detekt
