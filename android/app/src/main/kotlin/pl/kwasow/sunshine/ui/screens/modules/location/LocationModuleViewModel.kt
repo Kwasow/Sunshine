@@ -47,7 +47,8 @@ class LocationModuleViewModel(
 
     @ExperimentalPermissionsApi
     @Composable
-    fun rememberLocationPermissionState(): MultiplePermissionsState = permissionManager.rememberLocationPermissionState()
+    fun rememberLocationPermissionState(): MultiplePermissionsState =
+        permissionManager.rememberLocationPermissionState()
 
     fun launchPermissionSettings(activity: Activity?) {
         if (activity != null) {

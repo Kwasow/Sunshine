@@ -2,7 +2,7 @@ package pl.kwasow.sunshine.koin
 
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
-import pl.kwasow.sunshine.ui.screens.MainComposeViewModel
+import pl.kwasow.sunshine.ui.AppViewModel
 import pl.kwasow.sunshine.ui.screens.home.HomeScreenViewModel
 import pl.kwasow.sunshine.ui.screens.login.LoginScreenViewModel
 import pl.kwasow.sunshine.ui.screens.modules.location.LocationModuleViewModel
@@ -18,7 +18,7 @@ import pl.kwasow.sunshine.ui.widgets.music.PlaybackWidgetViewModel
 val viewModelsModule =
     module {
         viewModel {
-            MainComposeViewModel(get())
+            AppViewModel(get())
         }
 
         viewModel {

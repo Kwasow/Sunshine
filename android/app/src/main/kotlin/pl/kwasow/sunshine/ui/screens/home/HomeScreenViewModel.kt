@@ -35,5 +35,6 @@ class HomeScreenViewModel(
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @ExperimentalPermissionsApi
     @Composable
-    fun rememberNotificationPermissionState(): PermissionState = permissionManager.rememberNotificationPermissionState()
+    fun rememberNotificationPermissionState(): PermissionState =
+        permissionManager.rememberNotificationPermissionState()
 }

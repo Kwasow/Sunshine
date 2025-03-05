@@ -36,7 +36,9 @@ class MemoriesModuleViewModel(
 
     fun setSelectedYear(year: Int) {
         if (!memories.containsKey(year)) {
-            throw IllegalArgumentException("Year $year is not present in memories (valid values: ${memories.keys})")
+            throw IllegalArgumentException(
+                "Year $year is not present in memories (valid values: ${memories.keys})",
+            )
         }
 
         currentYear = year

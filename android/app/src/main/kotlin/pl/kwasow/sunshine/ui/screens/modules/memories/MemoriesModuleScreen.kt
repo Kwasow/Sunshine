@@ -101,7 +101,10 @@ private fun AppBar(
                 IconButton(onClick = onOpenYearPicker) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_calendar),
-                        contentDescription = stringResource(id = R.string.contentDescription_calendar),
+                        contentDescription =
+                            stringResource(
+                                id = R.string.contentDescription_calendar,
+                            ),
                         tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }

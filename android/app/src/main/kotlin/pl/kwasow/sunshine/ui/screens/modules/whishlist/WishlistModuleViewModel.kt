@@ -116,7 +116,9 @@ class WishlistModuleViewModel(
     }
 
     fun confirmDeleteWish() {
-        val wish = wishToDelete ?: throw IllegalStateException("Cannot confirm deletion of null wish")
+        val wish =
+            wishToDelete
+                ?: throw IllegalStateException("Cannot confirm deletion of null wish")
 
         viewModelScope.launch {
             deletingWish = true
@@ -135,6 +137,7 @@ class WishlistModuleViewModel(
 
     // ====== Private methods
     private suspend fun silentRefresh() {
-        wishlist = wishlistManager.getWishlist()?.mapValues { it.value.toMutableList() } ?: emptyMap()
+        wishlist = wishlistManager.getWishlist()?.mapValues { it.value.toMutableList() }
+            ?: emptyMap()
     }
 }

@@ -1,9 +1,10 @@
 import java.util.Properties
 
 plugins {
-    id("com.android.application")
     kotlin("android")
     kotlin("plugin.serialization")
+
+    id("com.android.application")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     id("com.google.gms.google-services")
     id("org.jetbrains.kotlin.plugin.compose") version "2.1.10"

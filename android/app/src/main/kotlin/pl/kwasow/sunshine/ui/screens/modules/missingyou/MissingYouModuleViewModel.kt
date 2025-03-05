@@ -35,14 +35,20 @@ class MissingYouModuleViewModel(
 
                 mediaPlayer.start()
                 snackbarHostState.showSnackbar(
-                    message = applicationContext.getString(R.string.module_missingyou_sending_success),
+                    message =
+                        applicationContext.getString(
+                            R.string.module_missingyou_sending_success,
+                        ),
                     duration = SnackbarDuration.Short,
                 )
 
                 hueVisible = false
             } else {
                 snackbarHostState.showSnackbar(
-                    message = applicationContext.getString(R.string.module_missingyou_sending_failed),
+                    message =
+                        applicationContext.getString(
+                            R.string.module_missingyou_sending_failed,
+                        ),
                     duration = SnackbarDuration.Long,
                 )
             }
