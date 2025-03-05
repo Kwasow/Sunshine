@@ -52,6 +52,7 @@ fun SettingsEntry(
         SettingName(
             name = name,
             description = description,
+            modifier = Modifier.weight(1f),
         )
         trailingContent()
     }
@@ -80,8 +81,11 @@ private fun SettingIcon(
 private fun SettingName(
     name: String,
     description: String,
+    modifier: Modifier = Modifier,
 ) {
-    Column {
+    Column(
+        modifier = modifier,
+    ) {
         Text(
             text = name,
             style = MaterialTheme.typography.bodyLarge,

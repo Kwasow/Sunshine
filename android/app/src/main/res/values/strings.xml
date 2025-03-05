@@ -21,8 +21,8 @@
     <string name="settings_cache_cleared">Pamięć wyczyszczona</string>
     <string name="settings_logout">Wyloguj</string>
     <string name="settings_logout_description">Pobrane treści zostaną usunięte</string>
-    <string name="settings_location_sharing"></string>
-    <string name="settings_location_sharing_description"></string>
+    <string name="settings_location_sharing">Prośby o lokalizację</string>
+    <string name="settings_location_sharing_description">Wysyłaj lokalizację w tle</string>
 
     <!-- General -->
     <string name="error_confirm">OK</string>

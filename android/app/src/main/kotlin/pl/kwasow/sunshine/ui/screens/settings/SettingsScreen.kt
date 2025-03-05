@@ -2,6 +2,7 @@ package pl.kwasow.sunshine.ui.screens.settings
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -117,11 +119,23 @@ private fun GeneralSettingsSection(onLogout: () -> Unit) {
             description = stringResource(id = R.string.settings_location_sharing_description),
             onClick = { viewModel.toggleAllowLocationRequests(allowLocationRequests != true) },
         ) {
-            Switch(
-                checked = allowLocationRequests == true,
-                onCheckedChange = { viewModel.toggleAllowLocationRequests(it) },
-            )
+            Row(
+                modifier =
+                    Modifier.padding(
+                        horizontal = 8.dp,
+                        vertical = 2.dp,
+                    ),
+            ) {
+                VerticalDivider(modifier = Modifier.padding(end = 12.dp))
+
+                Switch(
+                    checked = allowLocationRequests == true,
+                    onCheckedChange = { viewModel.toggleAllowLocationRequests(it) },
+                )
+            }
         }
+
+        HorizontalDivider()
 
         SettingsEntry(
             icon = rememberVectorPainter(image = Icons.Outlined.Delete),
