@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -24,6 +26,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 
@@ -32,11 +36,19 @@ import pl.kwasow.sunshine.R
 fun BackgroundLocationEntry() {
     val viewModel = koinViewModel<SettingsScreenViewModel>()
     val activity = LocalContext.current as Activity
+    val lifecycleState by LocalLifecycleOwner.current.lifecycle.currentStateFlow.collectAsState()
     val allowLocationRequests by viewModel.allowLocationRequests.observeAsState()
     var showDialog by remember { mutableStateOf(false) }
 
     val onToggle = {
         viewModel.toggleAllowLocationRequests(onPermissionMissing = { showDialog = true })
+    }
+
+    LaunchedEffect(lifecycleState) {
+        if (lifecycleState == Lifecycle.State.RESUMED) {
+            viewModel.updateAllowLocationRequestState(showDialog)
+            showDialog = false
+        }
     }
 
     SettingsEntry(
@@ -127,7 +139,6 @@ private fun AlertContent(partnerName: String) {
         text =
             stringResource(
                 id = R.string.settings_location_dialog_content,
-                partnerName,
                 partnerName,
             ),
         textAlign = TextAlign.Center,

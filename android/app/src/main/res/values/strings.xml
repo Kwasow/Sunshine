@@ -24,7 +24,7 @@
     <string name="settings_location_sharing">Prośby o lokalizację</string>
     <string name="settings_location_sharing_description">Wysyłaj lokalizację w tle</string>
     <string name="settings_location_dialog_title">Lokalizacja</string>
-    <string name="settings_location_dialog_content">Dostęp do lokalizacji w tle jest wymagany, jeśli chcesz móc sprawdzać gdzie jest %1$s, kiedy nie korzysta z aplikacji. %2$s również będzie mógł sprawdzać Twoją lokalizację, kiedy nie korzystasz z aplikacji.\n\nKliknij \"OK\" aby przejść od ustawień, a następnie wybierz \"Uprawnienia\" > \"Lokalizacja\" > \"Zawsze zezwalaj\".</string>
+    <string name="settings_location_dialog_content">Dostęp do lokalizacji w tle jest wymagany, jeśli chcesz móc sprawdzać, gdzie jest %1$s, kiedy nie korzysta z aplikacji. Aplikacja będzie też udostępniać Twoją lokalizację, nawet jeśli z niej nie korzystasz.\n\nKliknij \"OK\" aby przejść od ustawień, a następnie wybierz \"Uprawnienia\" > \"Lokalizacja\" > \"Zawsze zezwalaj\".</string>
 
     <!-- General -->
     <string name="ok">OK</string>
@@ -37,7 +37,7 @@
     <string name="edit">Edytuj</string>
     <string name="dialog_year_picker_title">Wybierz rok</string>
     <string name="something_went_wrong">Coś poszło nie tak</string>
-    <string name="partner">Partner</string>
+    <string name="partner">partner</string>
 
     <!-- Module: Memories -->
     <string name="module_memories_name">Wspomnienia</string>

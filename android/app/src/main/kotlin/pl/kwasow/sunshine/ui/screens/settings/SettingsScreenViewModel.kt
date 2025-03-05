@@ -59,4 +59,13 @@ class SettingsScreenViewModel(
             allowLocationRequests.value = newValue
         }
     }
+
+    fun updateAllowLocationRequestState(wasPermissionMissing: Boolean) {
+        if (wasPermissionMissing) {
+            val newValue = permissionManager.checkBackgroundLocationPermission()
+
+            allowLocationRequests.value = newValue
+            settingsManager.allowLocationRequests = newValue
+        }
+    }
 }
