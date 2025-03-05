@@ -28,7 +28,7 @@ jobs:
         echo $JSON > app/google-services.json
       working-directory: android
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew assembleRelease
       working-directory: android
 
   lint:
