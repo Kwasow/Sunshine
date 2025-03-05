@@ -20,7 +20,7 @@ class SettingsManagerImpl(
         )
 
     override var allowLocationRequests: Boolean
-        get() = sharedPreferences.getBoolean(ALLOW_LOCATION_REQUESTS_KEY, false)
+        get() = sharedPreferences.getBoolean(ALLOW_LOCATION_REQUESTS_KEY, true)
         set(value) {
             sharedPreferences.edit {
                 putBoolean(ALLOW_LOCATION_REQUESTS_KEY, value)
