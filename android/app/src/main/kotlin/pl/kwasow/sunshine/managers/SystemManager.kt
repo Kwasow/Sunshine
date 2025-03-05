@@ -18,4 +18,6 @@ interface SystemManager {
     fun clearCache()
 
     fun clearCoilCache()
+
+    fun launchStore()
 }
