@@ -5,18 +5,24 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import pl.kwasow.sunshine.R
+import pl.kwasow.sunshine.managers.PermissionManager
 import pl.kwasow.sunshine.managers.SettingsManager
 import pl.kwasow.sunshine.managers.SystemManager
 import pl.kwasow.sunshine.managers.UserManager
 
 class SettingsScreenViewModel(
     private val applicationContext: Context,
+    private val permissionManager: PermissionManager,
     private val settingsManager: SettingsManager,
     private val systemManager: SystemManager,
     private val userManager: UserManager,
 ) : ViewModel() {
     // ====== Fields
-    var allowLocationRequests = MutableLiveData(settingsManager.allowLocationRequests)
+    var allowLocationRequests =
+        MutableLiveData(
+            settingsManager.allowLocationRequests &&
+                permissionManager.checkBackgroundLocationPermission(),
+        )
         private set
 
     // ====== Methods
@@ -36,8 +42,13 @@ class SettingsScreenViewModel(
 
     fun launchStore() = systemManager.launchStore()
 
-    fun toggleAllowLocationRequests(newValue: Boolean) {
-        settingsManager.allowLocationRequests = newValue
-        allowLocationRequests.value = newValue
+    fun toggleAllowLocationRequests(onPermissionMissing: () -> Unit) {
+        if (!permissionManager.checkBackgroundLocationPermission()) {
+            onPermissionMissing()
+        } else {
+            val newValue = allowLocationRequests.value != true
+            settingsManager.allowLocationRequests = newValue
+            allowLocationRequests.value = newValue
+        }
     }
 }

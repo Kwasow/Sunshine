@@ -24,6 +24,8 @@ import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -110,30 +112,9 @@ private fun AppDetails() {
 @Composable
 private fun GeneralSettingsSection(onLogout: () -> Unit) {
     val viewModel = koinViewModel<SettingsScreenViewModel>()
-    val allowLocationRequests by viewModel.allowLocationRequests.observeAsState()
 
     SettingsSection(title = stringResource(id = R.string.settings_general)) {
-        SettingsEntry(
-            icon = rememberVectorPainter(image = Icons.Outlined.LocationOn),
-            name = stringResource(id = R.string.settings_location_sharing),
-            description = stringResource(id = R.string.settings_location_sharing_description),
-            onClick = { viewModel.toggleAllowLocationRequests(allowLocationRequests != true) },
-        ) {
-            Row(
-                modifier =
-                    Modifier.padding(
-                        horizontal = 8.dp,
-                        vertical = 2.dp,
-                    ),
-            ) {
-                VerticalDivider(modifier = Modifier.padding(end = 12.dp))
-
-                Switch(
-                    checked = allowLocationRequests == true,
-                    onCheckedChange = { viewModel.toggleAllowLocationRequests(it) },
-                )
-            }
-        }
+        BackgroundLocationEntry()
 
         HorizontalDivider()
 
@@ -154,6 +135,46 @@ private fun GeneralSettingsSection(onLogout: () -> Unit) {
             onClick = { viewModel.signOut(onLogout) },
         )
     }
+}
+
+@Composable
+private fun BackgroundLocationEntry() {
+    val viewModel = koinViewModel<SettingsScreenViewModel>()
+    val allowLocationRequests by viewModel.allowLocationRequests.observeAsState()
+    var showDialog by remember { mutableStateOf(false) }
+
+    val onToggle = {
+        viewModel.toggleAllowLocationRequests { showDialog = true }
+    }
+
+    SettingsEntry(
+        icon = rememberVectorPainter(image = Icons.Outlined.LocationOn),
+        name = stringResource(id = R.string.settings_location_sharing),
+        description = stringResource(id = R.string.settings_location_sharing_description),
+        onClick = onToggle,
+    ) {
+        Row(
+            modifier =
+                Modifier.padding(
+                    horizontal = 8.dp,
+                    vertical = 2.dp,
+                ),
+        ) {
+            VerticalDivider(modifier = Modifier.padding(end = 12.dp))
+
+            Switch(
+                checked = allowLocationRequests == true,
+                onCheckedChange = { onToggle() },
+            )
+        }
+    }
+
+    BackgroundLocationDialog(isShowing = showDialog)
+}
+
+@Composable
+private fun BackgroundLocationDialog(isShowing: Boolean) {
+
 }
 
 @Composable
