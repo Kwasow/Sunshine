@@ -15,17 +15,17 @@ class MissingYouRecipient implements jsonSerializable
         $this->icon = $icon;
     }
 
-    function getId()
+    public function getId()
     {
         return $this->id;
     }
 
-    function getFirstName()
+    public function getFirstName()
     {
         return $this->firstName;
     }
 
-    function getUserTopic()
+    public function getUserTopic()
     {
         return str_replace('@', '.', $this->email);
     }
@@ -38,13 +38,12 @@ class MissingYouRecipient implements jsonSerializable
         'icon' => $this->icon
         ];
     }
-  
 }
 
 class User extends MissingYouRecipient implements JsonSerializable
 {
-    private $_lastName;
-    private $_missingYouRecipient;
+    private $lastName;
+    private $missingYouRecipient;
 
     public function __construct(
         $id,
@@ -56,13 +55,13 @@ class User extends MissingYouRecipient implements JsonSerializable
     ) {
         $this->id = $id;
         $this->firstName = $firstName;
-        $this->_lastName = $lastName;
+        $this->lastName = $lastName;
         $this->email = $email;
         $this->icon = $icon;
-        $this->_missingYouRecipient = $missingYouRecipient;
+        $this->missingYouRecipient = $missingYouRecipient;
     }
 
-    function getMissingYouRecipient()
+    public function getMissingYouRecipient()
     {
         return $this->missingYouRecipient;
     }
@@ -72,13 +71,11 @@ class User extends MissingYouRecipient implements JsonSerializable
         return [
         'id' => $this->id,
         'firstName' => $this->firstName,
-        'lastName' => $this->_lastName,
+        'lastName' => $this->lastName,
         'email' => $this->email,
         'userTopic' => $this->getUserTopic(),
         'icon' => $this->icon,
-        'missingYouRecipient' => $this->_missingYouRecipient
+        'missingYouRecipient' => $this->missingYouRecipient
         ];
     }
 }
-
-?>

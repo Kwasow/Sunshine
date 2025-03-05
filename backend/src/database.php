@@ -2,11 +2,9 @@
 
 require_once __DIR__.'/../config/config.php';
 
-// Only endpoint files are allowed to open database connections. All other
-// functions should accept a connection as an argument.
 function openConnection()
 {
-    $config = $GLOBALS['sunshineConfig'];
+    $config = getSunshineConfig();
 
     $db_address = $config['databaseAddress'];
     $db_username = $config['databaseUsername'];
@@ -25,5 +23,3 @@ function openConnection()
         return $conn;
     }
 }
-
-?>

@@ -29,27 +29,27 @@ $messaging = $GLOBALS['firebaseMessaging'];
 $message = null;
 
 switch ($type) {
-case 'missing_you':
-    $topic = $user->getMissingYouRecipient()->getUserTopic();
-    $data = [
-    'type' => 'missing_you',
-    'name' => $user->getFirstName()
-    ];
+    case 'missing_you':
+        $topic = $user->getMissingYouRecipient()->getUserTopic();
+        $data = [
+        'type' => 'missing_you',
+        'name' => $user->getFirstName()
+        ];
 
-    $message = CloudMessage::withTarget('topic', $topic)
-    ->withData($data);
-    break;
-case 'request_location':
-    $topic = $user->getMissingYouRecipient()->getUserTopic();
-    $data = [
-    'type' => 'request_location'
-    ];
+        $message = CloudMessage::withTarget('topic', $topic)
+        ->withData($data);
+        break;
+    case 'request_location':
+        $topic = $user->getMissingYouRecipient()->getUserTopic();
+        $data = [
+        'type' => 'request_location'
+        ];
 
-    $message = CloudMessage::withTarget('topic', $topic)
-    ->withData($data);
-    break;
-default:
-    break;
+        $message = CloudMessage::withTarget('topic', $topic)
+        ->withData($data);
+        break;
+    default:
+        break;
 }
 
 if ($message == null) {
@@ -66,5 +66,3 @@ if ($message == null) {
 
 mysqli_close($conn);
 exit();
-
-?>

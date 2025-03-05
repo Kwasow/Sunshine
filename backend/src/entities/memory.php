@@ -2,12 +2,12 @@
 
 class Memory implements JsonSerializable
 {
-    private $_id;
-    private $_startDate;
-    private $_endDate;
-    private $_title;
-    private $_description;
-    private $_photo;
+    private $id;
+    private $startDate;
+    private $endDate;
+    private $title;
+    private $description;
+    private $photo;
 
     public function __construct(
         $id,
@@ -17,26 +17,23 @@ class Memory implements JsonSerializable
         $description,
         $photo
     ) {
-        $this->_id = $id;
-        $this->_startDate = $startDate;
-        $this->_endDate = $endDate;
-        $this->_title = $title;
-        $this->_description = $description;
-        $this->_photo = $photo;
+        $this->id = $id;
+        $this->startDate = $startDate;
+        $this->endDate = $endDate;
+        $this->title = $title;
+        $this->description = $description;
+        $this->photo = $photo;
     }
 
     public function jsonSerialize()
     {
         return [
-        'id' => $this->_id,
-        'startDate' => $this->_startDate,
-        'endDate' => $this->_endDate,
-        'title' => $this->_title,
-        'description' => $this->_description,
-        'photo' => $this->_photo
+        'id' => $this->id,
+        'startDate' => $this->startDate,
+        'endDate' => $this->endDate,
+        'title' => $this->title,
+        'description' => $this->description,
+        'photo' => $this->photo
         ];
     }
-
 }
-
-?>

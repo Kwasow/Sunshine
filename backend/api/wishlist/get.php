@@ -42,5 +42,3 @@ echo json_encode($wishlist);
 
 mysqli_close($conn);
 exit();
-
-?>

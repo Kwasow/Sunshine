@@ -34,11 +34,13 @@ $stmt = mysqli_prepare(
 mysqli_stmt_bind_param(
     $stmt,
     'sssss',
-    $startDate, $endDate, $title, $description, $photo
+    $startDate,
+    $endDate,
+    $title,
+    $description,
+    $photo
 );
 mysqli_stmt_execute($stmt);
 
 mysqli_close($conn);
 exit();
-
-?>

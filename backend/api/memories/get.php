@@ -51,5 +51,3 @@ echo json_encode($memories);
 
 mysqli_close($conn);
 exit();
-
-?>

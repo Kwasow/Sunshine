@@ -1,2 +1,2 @@
-./vendor/bin/phpcbf api/ src/
+./vendor/bin/phpcbf --standard=standard.xml api/ src/
 

@@ -2,33 +2,29 @@
 
 class Wish implements JsonSerializable
 {
-  
-    private $_id;
-    private $_author;
-    private $_content;
-    private $_done;
-    private $_timestamp;
+    private $id;
+    private $author;
+    private $content;
+    private $done;
+    private $timestamp;
 
     public function __construct($id, $author, $content, $done, $timestamp)
     {
-        $this->_id = $id;
-        $this->_author = $author;
-        $this->_content = $content;
-        $this->_done = $done;
-        $this->_timestamp = $timestamp;
+        $this->id = $id;
+        $this->author = $author;
+        $this->content = $content;
+        $this->done = $done;
+        $this->timestamp = $timestamp;
     }
 
     public function jsonSerialize()
     {
         return [
-        'id' => $this->_id,
-        'author' => $this->_author,
-        'content' => $this->_content,
-        'done' => $this->_done,
-        'timestamp' => $this->_timestamp
+        'id' => $this->id,
+        'author' => $this->author,
+        'content' => $this->content,
+        'done' => $this->done,
+        'timestamp' => $this->timestamp
         ];
     }
-
 }
-
-?>

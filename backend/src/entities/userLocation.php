@@ -2,12 +2,12 @@
 
 class UserLocation implements jsonSerializable
 {
-    private $_userId;
-    private $_userName;
-    private $_latitude;
-    private $_longitude;
-    private $_accuracy;
-    private $_timestamp;
+    private $userId;
+    private $userName;
+    private $latitude;
+    private $longitude;
+    private $accuracy;
+    private $timestamp;
 
     public function __construct(
         $userId,
@@ -17,37 +17,34 @@ class UserLocation implements jsonSerializable
         $accuracy,
         $timestamp
     ) {
-        $this->_userId = $userId;
-        $this->_userName = $userName;
-        $this->_latitude = $latitude;
-        $this->_longitude = $longitude;
-        $this->_accuracy = $accuracy;
-        $this->_timestamp = $timestamp;
+        $this->userId = $userId;
+        $this->userName = $userName;
+        $this->latitude = $latitude;
+        $this->longitude = $longitude;
+        $this->accuracy = $accuracy;
+        $this->timestamp = $timestamp;
     }
 
-    function getFirstName()
+    public function getFirstName()
     {
-        return $this->_firstName;
+        return $this->firstName;
     }
 
-    function getUserTopic()
+    public function getUserTopic()
     {
-        return str_replace('@', '.', $this->_email);
+        return str_replace('@', '.', $this->email);
     }
 
     public function jsonSerialize()
     {
         return [
-        'userId' => $this->_userId,
-        'userName' => $this->_userName,
-        'latitude' => $this->_latitude,
-        'longitude' => $this->_longitude,
-        'accuracy' => $this->_accuracy,
-        'timestamp' => $this->_timestamp,
+        'userId' => $this->userId,
+        'userName' => $this->userName,
+        'latitude' => $this->latitude,
+        'longitude' => $this->longitude,
+        'accuracy' => $this->accuracy,
+        'timestamp' => $this->timestamp,
         'isCached' => false
         ];
     }
-  
 }
-
-?>

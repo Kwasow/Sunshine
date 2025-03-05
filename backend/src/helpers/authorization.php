@@ -83,5 +83,3 @@ function getBearerToken()
 
     return null;
 }
-
-?>

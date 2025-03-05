@@ -68,5 +68,3 @@ echo json_encode($albums);
 
 mysqli_close($conn);
 exit();
-
-?>

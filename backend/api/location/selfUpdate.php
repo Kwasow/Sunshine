@@ -36,12 +36,17 @@ $stmt = mysqli_prepare(
 mysqli_stmt_bind_param(
     $stmt,
     'idddddddd',
-    $postData, $latitude, $longitude, $accuracy, $timestamp,
-    $latitude, $longitude, $accuracy, $timestamp
+    $postData,
+    $latitude,
+    $longitude,
+    $accuracy,
+    $timestamp,
+    $latitude,
+    $longitude,
+    $accuracy,
+    $timestamp
 );
 mysqli_stmt_execute($stmt);
 
 mysqli_close($conn);
 exit();
-
-?>

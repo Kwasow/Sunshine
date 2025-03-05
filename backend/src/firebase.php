@@ -9,5 +9,3 @@ $factory = (new Factory)->withServiceAccount(
 );
 $firebaseAuth = $factory->createAuth();
 $firebaseMessaging = $factory->createMessaging();
-
-?>

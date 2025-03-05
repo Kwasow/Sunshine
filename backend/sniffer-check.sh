@@ -1,2 +1,2 @@
-./vendor/bin/phpcs api/ src/
+./vendor/bin/phpcs --standard=standard.xml api/ src/
 
