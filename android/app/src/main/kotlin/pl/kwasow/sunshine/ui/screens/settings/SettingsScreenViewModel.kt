@@ -1,5 +1,6 @@
 package pl.kwasow.sunshine.ui.screens.settings
 
+import android.app.Activity
 import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
@@ -25,6 +26,10 @@ class SettingsScreenViewModel(
         )
         private set
 
+    val partnerName =
+        userManager.getCachedUser()?.missingYouRecipient?.firstName
+            ?: applicationContext.getString(R.string.partner)
+
     // ====== Methods
     fun freeUpMemory() {
         systemManager.clearCoilCache()
@@ -41,6 +46,9 @@ class SettingsScreenViewModel(
     }
 
     fun launchStore() = systemManager.launchStore()
+
+    fun launchPermissionSettings(activity: Activity) =
+        permissionManager.launchPermissionSettings(activity)
 
     fun toggleAllowLocationRequests(onPermissionMissing: () -> Unit) {
         if (!permissionManager.checkBackgroundLocationPermission()) {

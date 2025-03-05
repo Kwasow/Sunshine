@@ -38,7 +38,7 @@ fun ErrorDialog(
 private fun AlertIcon() {
     Icon(
         imageVector = Icons.Outlined.Warning,
-        contentDescription = stringResource(id = R.string.contentDescription_trash_icon),
+        contentDescription = stringResource(id = R.string.contentDescription_warning),
     )
 }
 
@@ -58,7 +58,7 @@ private fun AlertContent(error: String) {
 @Composable
 private fun AlertConfirmButton(onClick: () -> Unit) {
     TextButton(onClick = onClick) {
-        Text(text = stringResource(id = R.string.error_confirm))
+        Text(text = stringResource(id = R.string.ok))
     }
 }
 

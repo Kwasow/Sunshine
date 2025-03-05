@@ -23,9 +23,11 @@
     <string name="settings_logout_description">Pobrane treści zostaną usunięte</string>
     <string name="settings_location_sharing">Prośby o lokalizację</string>
     <string name="settings_location_sharing_description">Wysyłaj lokalizację w tle</string>
+    <string name="settings_location_dialog_title">Lokalizacja</string>
+    <string name="settings_location_dialog_content">Dostęp do lokalizacji w tle jest wymagany, jeśli chcesz móc sprawdzać gdzie jest %1$s, kiedy nie korzysta z aplikacji. %2$s również będzie mógł sprawdzać Twoją lokalizację, kiedy nie korzystasz z aplikacji.\n\nKliknij \"OK\" aby przejść od ustawień, a następnie wybierz \"Uprawnienia\" > \"Lokalizacja\" > \"Zawsze zezwalaj\".</string>
 
     <!-- General -->
-    <string name="error_confirm">OK</string>
+    <string name="ok">OK</string>
     <string name="failed_loading_photo">Nie udało się załadować zdjęcia</string>
     <string name="confirm">Potwierdź</string>
     <string name="cancel">Anuluj</string>
@@ -35,6 +37,7 @@
     <string name="edit">Edytuj</string>
     <string name="dialog_year_picker_title">Wybierz rok</string>
     <string name="something_went_wrong">Coś poszło nie tak</string>
+    <string name="partner">Partner</string>
 
     <!-- Module: Memories -->
     <string name="module_memories_name">Wspomnienia</string>
@@ -107,6 +110,7 @@
     <string name="contentDescription_album_cover">Okładka albumu</string>
     <string name="contentDescription_download_icon">Pobierania</string>
     <string name="contentDescription_trash_icon">Kosz na śmieci</string>
+    <string name="contentDescription_warning">Ostrzeżenie</string>
     <string name="contentDescription_settings_icon">Ustawienia</string>
     <string name="contentDescription_settings_entry_icon">Ustawienia: %1$s</string>
     <string name="contentDescription_previous_track_icon">Poprzedni utwór</string>
@@ -126,4 +130,5 @@
     <string name="contentDescription_delete_icon">Usuń</string>
     <string name="contentDescription_three_dot_menu">Menu</string>
     <string name="contentDescription_refresh">Odśwież</string>
+    <string name="contentDescription_location">Lokalizacja</string>
 </resources>
