@@ -113,7 +113,7 @@ private fun MainView(
 @Composable
 private fun LocationPermissionNotGranted(paddingValues: PaddingValues) {
     val viewModel = koinViewModel<LocationModuleViewModel>()
-    val activity = LocalContext.current as? Activity
+    val activity = LocalContext.current as Activity
 
     Column(
         modifier =

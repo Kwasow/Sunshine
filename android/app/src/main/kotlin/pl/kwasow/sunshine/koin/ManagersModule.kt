@@ -17,6 +17,8 @@ import pl.kwasow.sunshine.managers.PlaybackManager
 import pl.kwasow.sunshine.managers.PlaybackManagerImpl
 import pl.kwasow.sunshine.managers.RequestManager
 import pl.kwasow.sunshine.managers.RequestManagerImpl
+import pl.kwasow.sunshine.managers.SettingsManager
+import pl.kwasow.sunshine.managers.SettingsManagerImpl
 import pl.kwasow.sunshine.managers.SystemManager
 import pl.kwasow.sunshine.managers.SystemManagerImpl
 import pl.kwasow.sunshine.managers.TokenManager
@@ -33,7 +35,7 @@ val managersModule =
         }
 
         single<LocationManager> {
-            LocationManagerImpl(get(), get())
+            LocationManagerImpl(get(), get(), get())
         }
 
         single<MemoriesManager> {
@@ -58,6 +60,10 @@ val managersModule =
 
         single<RequestManager> {
             RequestManagerImpl(get())
+        }
+
+        single<SettingsManager> {
+            SettingsManagerImpl(get())
         }
 
         single<SystemManager> {

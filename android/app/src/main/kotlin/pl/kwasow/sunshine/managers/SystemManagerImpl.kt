@@ -1,11 +1,15 @@
 package pl.kwasow.sunshine.managers
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.Uri
 import coil.annotation.ExperimentalCoilApi
 import coil.imageLoader
 import kotlinx.serialization.json.Json
+import pl.kwasow.sunshine.BuildConfig
 import pl.kwasow.sunshine.data.Memory
 import pl.kwasow.sunshine.data.User
 import java.io.File
@@ -61,6 +65,27 @@ class SystemManagerImpl(
 
         imageLoader.diskCache?.clear()
         imageLoader.memoryCache?.clear()
+    }
+
+    override fun launchStore() {
+        try {
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("market://details?id=${BuildConfig.APPLICATION_ID}"),
+                ),
+            )
+        } catch (_: ActivityNotFoundException) {
+            context.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(
+                        "https://play.google.com/store/apps/details?id=" +
+                            BuildConfig.APPLICATION_ID,
+                    ),
+                ),
+            )
+        }
     }
 
     // ====== Private methods

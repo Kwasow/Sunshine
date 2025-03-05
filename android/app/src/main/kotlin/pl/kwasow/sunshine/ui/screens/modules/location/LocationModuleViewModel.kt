@@ -50,13 +50,8 @@ class LocationModuleViewModel(
     fun rememberLocationPermissionState(): MultiplePermissionsState =
         permissionManager.rememberLocationPermissionState()
 
-    fun launchPermissionSettings(activity: Activity?) {
-        if (activity != null) {
-            permissionManager.launchPermissionSettings(activity)
-        } else {
-            // TODO: Show error
-        }
-    }
+    fun launchPermissionSettings(activity: Activity) =
+        permissionManager.launchPermissionSettings(activity)
 
     // ====== Private methods
     private suspend fun getUserLocation(cached: Boolean): UserLocation? {

@@ -10,4 +10,6 @@ interface LocationManager {
     suspend fun getCurrentLocation(): Location?
 
     suspend fun getPartnerLocation(): UserLocation?
+
+    suspend fun sendLocationToPartner()
 }

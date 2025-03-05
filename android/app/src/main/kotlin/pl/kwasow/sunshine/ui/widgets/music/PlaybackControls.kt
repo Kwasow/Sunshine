@@ -22,6 +22,7 @@ import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -185,17 +186,17 @@ private fun ButtonControls(modifier: Modifier = Modifier) {
 @Composable
 private fun PlayPauseButton() {
     val viewModel = koinViewModel<PlaybackWidgetViewModel>()
-    val isPlaying = viewModel.isPlaying.observeAsState()
-    val isLoading = viewModel.isLoading.observeAsState()
+    val isPlaying by viewModel.isPlaying.observeAsState()
+    val isLoading by viewModel.isLoading.observeAsState()
 
     Box(
         modifier = Modifier.size(36.dp),
     ) {
-        if (isLoading.value == true) {
+        if (isLoading == true) {
             LoadingView(
                 modifier = Modifier.fillMaxSize(),
             )
-        } else if (isPlaying.value == true) {
+        } else if (isPlaying == true) {
             IconButton(onClick = { viewModel.pause() }) {
                 Icon(
                     painterResource(id = R.drawable.ic_pause),

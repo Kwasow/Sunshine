@@ -12,6 +12,7 @@ import pl.kwasow.sunshine.utils.SunshineLogger
 class LocationManagerImpl(
     context: Context,
     private val requestManager: RequestManager,
+    private val settingsManager: SettingsManager,
 ) : LocationManager {
     // ====== Fields
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
@@ -54,6 +55,14 @@ class LocationManagerImpl(
     }
 
     override suspend fun getPartnerLocation(): UserLocation? = requestManager.getPartnerLocation()
+
+    override suspend fun sendLocationToPartner() {
+        if (!settingsManager.allowLocationRequests) {
+            return
+        }
+
+        getCurrentLocation()
+    }
 
     // ====== Private methods
     private suspend fun updateLocationOnServer(location: Location?) {
