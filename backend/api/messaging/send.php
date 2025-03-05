@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__.'/../../src/database.php';
 require_once __DIR__.'/../../src/helpers/authorization.php';
+require_once __DIR__.'/../../src/helpers/database.php';
 
 use Kreait\Firebase\Exception\MessagingException;
 use Kreait\Firebase\Messaging\CloudMessage;

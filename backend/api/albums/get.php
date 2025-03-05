@@ -1,10 +1,10 @@
 <?php
 
 require_once __DIR__.'/../../config/config.php';
-require_once __DIR__.'/../../src/database.php';
 require_once __DIR__.'/../../src/entities/album.php';
 require_once __DIR__.'/../../src/entities/track.php';
 require_once __DIR__.'/../../src/helpers/authorization.php';
+require_once __DIR__.'/../../src/helpers/database.php';
 
 // Open database connection
 $conn = openConnection();

@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__.'/../entities/user.php';
-require_once __DIR__.'/../firebase.php';
+require_once __DIR__.'/../helpers/firebase.php';
 
 use Kreait\Firebase\Exception\Auth\FailedToVerifyToken;
 

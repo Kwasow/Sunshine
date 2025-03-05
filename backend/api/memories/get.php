@@ -1,9 +1,9 @@
 <?php
 
 require_once __DIR__.'/../../config/config.php';
-require_once __DIR__.'/../../src/database.php';
 require_once __DIR__.'/../../src/entities/memory.php';
 require_once __DIR__.'/../../src/helpers/authorization.php';
+require_once __DIR__.'/../../src/helpers/database.php';
 require_once __DIR__.'/../../src/helpers/date.php';
 
 // Open database connection
