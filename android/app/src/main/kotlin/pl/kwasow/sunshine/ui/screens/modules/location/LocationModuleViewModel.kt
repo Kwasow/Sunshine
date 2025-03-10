@@ -43,9 +43,7 @@ class LocationModuleViewModel(
         permissionManager.launchPermissionSettings(activity)
 
     // ====== Private methods
-    private suspend fun requestUserLocation() =
-        locationManager.requestLocation()
+    private suspend fun requestUserLocation() = locationManager.requestLocation()
 
-    private suspend fun requestPartnerLocation() =
-        locationManager.requestPartnerLocation(false)
+    private suspend fun requestPartnerLocation() = locationManager.requestPartnerLocation(false)
 }

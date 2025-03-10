@@ -38,9 +38,10 @@ class LocationManagerImpl(
     override suspend fun requestPartnerLocation(cached: Boolean) {
         // If the user didn't allow background location requests, we'll only allow them to
         // request the server cached location
-        val partnerLocation = requestManager.getPartnerLocation(
-            cached && !settingsManager.allowLocationRequests
-        )
+        val partnerLocation =
+            requestManager.getPartnerLocation(
+                cached && !settingsManager.allowLocationRequests,
+            )
         if (partnerLocation != null) {
             this.partnerLocation.postValue(partnerLocation)
         }
