@@ -119,65 +119,59 @@ android {
 }
 
 dependencies {
-    val composeBom = "2025.02.00"
-    val exoplayerVersion = "1.5.1"
-    val firebaseBom = "33.10.0"
-    val koinVersion = "4.0.2"
-    val ktorVersion = "3.1.0"
-
     // BoM
-    implementation(platform("androidx.compose:compose-bom:$composeBom"))
-    implementation(platform("com.google.firebase:firebase-bom:$firebaseBom"))
+    implementation(platform(libs.compose.bom))
+    implementation(platform(libs.firebase.bom))
 
     // Firebase and Google
-    implementation("com.google.android.gms:play-services-location:21.3.0")
-    implementation("com.google.android.gms:play-services-maps:19.1.0")
-    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-messaging")
-    implementation("com.google.maps.android:maps-compose:6.4.2")
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.messaging)
+    implementation(libs.google.services.location)
+    implementation(libs.google.services.maps)
+    implementation(libs.google.libraries.googleid)
+    implementation(libs.google.libraries.maps.compose)
 
     // Kotlin
-    implementation("androidx.core:core-ktx:1.15.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    implementation(libs.kotlin.core)
+    implementation(libs.kotlin.serialization.json)
 
     // Ktor
-    implementation("io.ktor:ktor-client-core:$ktorVersion")
-    implementation("io.ktor:ktor-client-android:$ktorVersion")
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.core)
 
     // Koin
-    implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
-    implementation("io.insert-koin:koin-androidx-compose-navigation:$koinVersion")
+    implementation(libs.koin.compose.base)
+    implementation(libs.koin.compose.navigation)
 
     // Compose
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material")
-    implementation("androidx.compose.runtime:runtime-livedata")
-    implementation("androidx.navigation:navigation-compose:2.8.8")
-    implementation("com.google.accompanist:accompanist-permissions:0.37.2")
+    implementation(libs.compose.accompanist.permissions)
+    implementation(libs.compose.livedata)
+    implementation(libs.compose.material)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.navigation)
+    implementation(libs.compose.ui.base)
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.compose.ui.tooling.preview)
 
     // Other
-    implementation("androidx.credentials:credentials:1.5.0-rc01")
-    implementation("androidx.credentials:credentials-play-services-auth:1.5.0-rc01")
-    implementation("androidx.media3:media3-common:$exoplayerVersion")
-    implementation("androidx.media3:media3-exoplayer:$exoplayerVersion")
-    implementation("androidx.media3:media3-session:$exoplayerVersion")
-    implementation("io.coil-kt:coil-compose:2.7.0")
-    implementation("dev.chrisbanes.haze:haze:1.3.1")
-    implementation("dev.chrisbanes.haze:haze-materials:1.3.1")
+    implementation(libs.android.credentials.base)
+    implementation(libs.android.credentials.services)
+    implementation(libs.android.lifecycle)
+    implementation(libs.android.media.common)
+    implementation(libs.android.media.exoplayer)
+    implementation(libs.android.media.session)
+    implementation(libs.coil)
+    implementation(libs.haze.base)
+    implementation(libs.haze.materials)
 
     // Testing
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:$composeBom"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.android.test.espresso)
+    androidTestImplementation(libs.android.test.junit)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.tooling.base)
+    debugImplementation(libs.compose.ui.test.manifest)
 }
