@@ -1,0 +1,14 @@
+[versions]
+# Build details
+compileSdk = "35"
+targetSdk = "35"
+minSdk = "26"
+versionCode = "39"
+versionName = "2.1.6"
+
+# Libraries and plugins
+
+[libraries]
+
+[plugins]
+
