@@ -10,11 +10,13 @@ import androidx.compose.material.ContentAlpha
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.stringResource
@@ -27,9 +29,11 @@ import pl.kwasow.sunshine.R
 @Composable
 fun SettingsEntry(
     icon: Painter,
+    iconTint: Color = LocalContentColor.current,
     name: String,
     description: String = "",
     onClick: () -> Unit,
+    trailingContent: @Composable () -> Unit = {},
 ) {
     Row(
         modifier =
@@ -40,8 +44,17 @@ fun SettingsEntry(
                 .padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        SettingIcon(icon, name)
-        SettingName(name, description)
+        SettingIcon(
+            icon = icon,
+            tint = iconTint,
+            name = name,
+        )
+        SettingName(
+            name = name,
+            description = description,
+            modifier = Modifier.weight(1f),
+        )
+        trailingContent()
     }
 }
 
@@ -50,6 +63,7 @@ fun SettingsEntry(
 private fun SettingIcon(
     icon: Painter,
     name: String,
+    tint: Color = LocalContentColor.current,
 ) {
     Icon(
         icon,
@@ -59,6 +73,7 @@ private fun SettingIcon(
                 name,
             ),
         modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp),
+        tint = tint,
     )
 }
 
@@ -66,8 +81,11 @@ private fun SettingIcon(
 private fun SettingName(
     name: String,
     description: String,
+    modifier: Modifier = Modifier,
 ) {
-    Column {
+    Column(
+        modifier = modifier,
+    ) {
         Text(
             text = name,
             style = MaterialTheme.typography.bodyLarge,

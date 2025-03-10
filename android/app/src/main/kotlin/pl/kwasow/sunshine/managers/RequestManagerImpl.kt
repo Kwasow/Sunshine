@@ -5,6 +5,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.request.bearerAuth
 import io.ktor.client.request.headers
+import io.ktor.client.request.parameter
 import io.ktor.client.request.request
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
@@ -174,26 +175,11 @@ class RequestManagerImpl(
         )
     }
 
-    override suspend fun requestPartnerLocation(): Boolean {
-        val body =
-            buildJsonObject {
-                put("type", MessagingManager.MessageType.REQUEST_LOCATION.id)
-            }
-
-        val response =
-            makeAuthRequest(
-                type = HttpMethod.Post,
-                url = POST_MESSAGE_URL,
-                body = body.toString(),
-            )
-
-        return response?.status == HttpStatusCode.OK
-    }
-
-    override suspend fun getPartnerLocation(): UserLocation? {
+    override suspend fun getPartnerLocation(cached: Boolean): UserLocation? {
         return makeAuthJsonRequest(
             type = HttpMethod.Get,
             url = GET_LOCATION_URL,
+            parameters = mapOf("cached" to cached.toString()),
         )
     }
 
@@ -220,13 +206,17 @@ class RequestManagerImpl(
     private suspend inline fun <reified T> makeAuthJsonRequest(
         type: HttpMethod,
         url: String,
-    ): T? = makeFullAuthJsonRequest<T>(type, url).second
+        body: String? = null,
+        parameters: Map<String, String>? = null,
+    ): T? = makeFullAuthJsonRequest<T>(type, url, body, parameters).second
 
     private suspend inline fun <reified T> makeFullAuthJsonRequest(
         type: HttpMethod,
         url: String,
+        body: String? = null,
+        parameters: Map<String, String>? = null,
     ): Pair<HttpResponse?, T?> {
-        val response = makeAuthRequest(type, url)
+        val response = makeAuthRequest(type, url, body, parameters)
 
         if (response == null || response.status != HttpStatusCode.OK) {
             return Pair(response, null)
@@ -236,6 +226,7 @@ class RequestManagerImpl(
             try {
                 json.decodeFromString<T>(response.bodyAsText())
             } catch (e: Exception) {
+                SunshineLogger.d("Failed to decode json response", e)
                 null
             }
 
@@ -246,6 +237,7 @@ class RequestManagerImpl(
         type: HttpMethod,
         url: String,
         body: String? = null,
+        parameters: Map<String, String>? = null,
     ): HttpResponse? {
         val token = tokenManager.getToken() ?: return null
 
@@ -267,6 +259,10 @@ class RequestManagerImpl(
                     if (body != null) {
                         setBody(body)
                     }
+
+                    parameters?.forEach { (key, value) ->
+                        parameter(key, value)
+                    }
                 }
 
             SunshineLogger.d(
@@ -283,6 +279,7 @@ class RequestManagerImpl(
         type: HttpMethod,
         url: String,
         body: String? = null,
+        parameters: Map<String, String>? = null,
     ): HttpResponse? {
         try {
             val request =
@@ -297,6 +294,10 @@ class RequestManagerImpl(
 
                     if (body != null) {
                         setBody(body)
+                    }
+
+                    parameters?.forEach { (key, value) ->
+                        parameter(key, value)
                     }
                 }
 

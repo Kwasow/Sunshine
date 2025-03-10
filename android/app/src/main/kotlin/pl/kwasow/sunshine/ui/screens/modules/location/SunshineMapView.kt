@@ -1,11 +1,13 @@
 package pl.kwasow.sunshine.ui.screens.modules.location
 
+import android.location.Location
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
@@ -81,25 +83,23 @@ fun SunshineMapView(
 
 // ====== Private composables
 @Composable
-private fun CurrentLocationMarker(location: UserLocation) {
-    // TODO: Show traditional my location point
+private fun CurrentLocationMarker(location: Location) {
     val markerState = rememberMarkerState(position = LatLng(location.latitude, location.longitude))
 
     Marker(
         state = markerState,
-        title = location.userName,
-        icon = bitmapDescriptorFromVector(R.drawable.ic_map_marker),
+        title = stringResource(id = R.string.module_location_your_location),
+        icon = bitmapDescriptorFromVector(R.drawable.ic_current_location),
     )
 }
 
 @Composable
 private fun PersonMarker(location: UserLocation) {
-    // TODO: Customize with selected user icon
     val markerState = rememberMarkerState(position = LatLng(location.latitude, location.longitude))
 
     Marker(
         state = markerState,
         title = location.userName,
-        icon = bitmapDescriptorFromVector(R.drawable.ic_map_marker),
+        icon = bitmapDescriptorFromVector(R.drawable.ic_map_user_marker),
     )
 }

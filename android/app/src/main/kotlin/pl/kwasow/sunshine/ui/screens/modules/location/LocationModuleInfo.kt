@@ -8,5 +8,4 @@ val LocationModuleInfo =
         R.string.module_location_name,
         R.string.module_location_subtitle,
         R.drawable.ic_location,
-        false,
     )

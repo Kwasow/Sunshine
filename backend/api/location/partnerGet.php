@@ -62,7 +62,7 @@ echo json_encode(
 // loops.
 $cached = true;
 if (isset($_GET['cached'])) {
-    $cached = $_GET['cached'];
+    $cached = filter_var($_GET['cached'], FILTER_VALIDATE_BOOLEAN);;
 }
 
 if ($cached == false) {

@@ -30,7 +30,7 @@ val viewModelsModule =
         }
 
         viewModel {
-            LocationModuleViewModel(get(), get(), get())
+            LocationModuleViewModel(get(), get())
         }
 
         viewModel {
@@ -62,6 +62,6 @@ val viewModelsModule =
         }
 
         viewModel {
-            SettingsScreenViewModel(get(), get(), get())
+            SettingsScreenViewModel(get(), get(), get(), get(), get())
         }
     }

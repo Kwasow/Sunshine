@@ -31,9 +31,7 @@ interface RequestManager {
 
     suspend fun getAlbums(): List<Album>?
 
-    suspend fun requestPartnerLocation(): Boolean
-
-    suspend fun getPartnerLocation(): UserLocation?
+    suspend fun getPartnerLocation(cached: Boolean = true): UserLocation?
 
     suspend fun updateLocation(location: Location): Boolean
 }

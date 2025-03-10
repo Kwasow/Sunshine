@@ -1,9 +1,5 @@
 package pl.kwasow.sunshine.ui.screens.settings
 
-import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -26,7 +22,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -110,57 +105,39 @@ private fun GeneralSettingsSection(onLogout: () -> Unit) {
     val viewModel = koinViewModel<SettingsScreenViewModel>()
 
     SettingsSection(title = stringResource(id = R.string.settings_general)) {
+        BackgroundLocationEntry()
+
+        HorizontalDivider()
+
         SettingsEntry(
             icon = rememberVectorPainter(image = Icons.Outlined.Delete),
             name = stringResource(id = R.string.settings_clear_cache),
             description = stringResource(id = R.string.settings_clear_cache_description),
-        ) {
-            viewModel.freeUpMemory()
-        }
+            onClick = { viewModel.freeUpMemory() },
+        )
 
         HorizontalDivider()
 
         SettingsEntry(
             icon = painterResource(id = R.drawable.ic_logout),
+            iconTint = MaterialTheme.colorScheme.error,
             name = stringResource(id = R.string.settings_logout),
             description = stringResource(id = R.string.settings_logout_description),
-        ) {
-            viewModel.signOut(onLogout)
-        }
+            onClick = { viewModel.signOut(onLogout) },
+        )
     }
 }
 
 @Composable
 private fun InfoSettingsSection() {
-    val context = LocalContext.current
+    val viewModel = koinViewModel<SettingsScreenViewModel>()
 
     SettingsSection {
         SettingsEntry(
             icon = painterResource(id = R.drawable.ic_store),
             name = stringResource(id = R.string.settings_play_store),
             description = stringResource(id = R.string.settings_play_store_description),
-        ) {
-            launchPlayStore(context)
-        }
-    }
-}
-
-private fun launchPlayStore(context: Context) {
-    try {
-        context.startActivity(
-            Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("market://details?id=${BuildConfig.APPLICATION_ID}"),
-            ),
-        )
-    } catch (_: ActivityNotFoundException) {
-        context.startActivity(
-            Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse(
-                    "https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}",
-                ),
-            ),
+            onClick = { viewModel.launchStore() },
         )
     }
 }
