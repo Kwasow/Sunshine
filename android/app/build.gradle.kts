@@ -1,14 +1,14 @@
 import java.util.Properties
 
 plugins {
-    kotlin("android")
-    kotlin("plugin.serialization")
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 
-    id("com.android.application")
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-    id("com.google.gms.google-services")
-    id("org.jetbrains.kotlin.plugin.compose") version "2.1.10"
-    id("org.jlleitschuh.gradle.ktlint") version "12.2.0"
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.google.mapsplatform)
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ktlint)
 }
 
 secrets {
