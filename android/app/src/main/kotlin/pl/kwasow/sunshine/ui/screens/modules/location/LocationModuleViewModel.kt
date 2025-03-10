@@ -55,16 +55,18 @@ class LocationModuleViewModel(
 
     // ====== Private methods
     private suspend fun getUserLocation(cached: Boolean): UserLocation? {
-        val user = userManager.getCachedUser() ?: return null
-        val location =
-            if (cached) {
-                locationManager.getCachedLocation()
-            } else {
-                locationManager.getCurrentLocation()
-            } ?: return null
+//        val user = userManager.getCachedUser() ?: return null
+//        val location =
+//            if (cached) {
+//                locationManager.getCachedLocation()
+//            } else {
+//                locationManager.getCurrentLocation()
+//            } ?: return null
+//
+//        return UserLocation(user, location, cached)
 
-        return UserLocation(user, location, cached)
+        return null
     }
 
-    private suspend fun getPartnerLocation(): UserLocation? = locationManager.getPartnerLocation()
+    private suspend fun getPartnerLocation(): UserLocation? = null
 }

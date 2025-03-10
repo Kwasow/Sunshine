@@ -2,7 +2,6 @@ package pl.kwasow.sunshine.managers
 
 import android.content.Context
 import android.location.Location
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
@@ -19,65 +18,71 @@ class LocationManagerImpl(
     // ====== Fields
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
 
-    override val userLocation: LiveData<Location?> = MutableLiveData(null)
-    override val partnerLocation: LiveData<UserLocation?> = MutableLiveData(null)
+    override val userLocation = MutableLiveData<Location?>(null)
+    override val partnerLocation = MutableLiveData<UserLocation?>(null)
 
     // ====== Interface methods
     override suspend fun requestLocation() {
-        TODO("Not yet implemented")
+        if (userLocation.value == null) {
+            userLocation.postValue(getCachedLocation())
+        }
+
+        val location = getCurrentLocation()
+        if (location != null) {
+            userLocation.postValue(location)
+        }
+
+        updateLocationOnServer(location)
     }
 
-    override suspend fun requestPartnerLocation() {
-        TODO("Not yet implemented")
+    override suspend fun requestPartnerLocation(cached: Boolean) {
+        // If the user didn't allow background location requests, we'll only allow them to
+        // request the server cached location
+        val partnerLocation = requestManager.getPartnerLocation(
+            cached && !settingsManager.allowLocationRequests
+        )
+        if (partnerLocation != null) {
+            this.partnerLocation.postValue(partnerLocation)
+        }
     }
-
-//    override suspend fun getCachedLocation(): Location? {
-//        try {
-//            val location: Location? = fusedLocationClient.lastLocation.await()
-//            updateLocationOnServer(location)
-//
-//            return location
-//        } catch (e: SecurityException) {
-//            SunshineLogger.e("Location permission not granted", e)
-//            return null
-//        } catch (e: Exception) {
-//            SunshineLogger.e("Error getting location", e)
-//            return null
-//        }
-//    }
-//
-//    override suspend fun getCurrentLocation(): Location? {
-//        val accuracy = Priority.PRIORITY_BALANCED_POWER_ACCURACY
-//
-//        try {
-//            val location: Location? =
-//                fusedLocationClient.getCurrentLocation(
-//                    accuracy,
-//                    CancellationTokenSource().token,
-//                ).await()
-//            updateLocationOnServer(location)
-//
-//            return location
-//        } catch (e: SecurityException) {
-//            SunshineLogger.e("Location permission not granted", e)
-//            return null
-//        } catch (e: Exception) {
-//            SunshineLogger.e("Error getting location", e)
-//            return null
-//        }
-//    }
-//
-//    override suspend fun getPartnerLocation(): UserLocation? = requestManager.getPartnerLocation()
-//
-//    override suspend fun sendLocationToPartner() {
-//        if (!settingsManager.allowLocationRequests) {
-//            return
-//        }
-//
-//        getCurrentLocation()
-//    }
 
     // ====== Private methods
+    private suspend fun getCachedLocation(): Location? {
+        try {
+            val location: Location? = fusedLocationClient.lastLocation.await()
+            updateLocationOnServer(location)
+
+            return location
+        } catch (e: SecurityException) {
+            SunshineLogger.e("Location permission not granted", e)
+            return null
+        } catch (e: Exception) {
+            SunshineLogger.e("Error getting location", e)
+            return null
+        }
+    }
+
+    private suspend fun getCurrentLocation(): Location? {
+        val accuracy = Priority.PRIORITY_BALANCED_POWER_ACCURACY
+
+        try {
+            val location: Location? =
+                fusedLocationClient.getCurrentLocation(
+                    accuracy,
+                    CancellationTokenSource().token,
+                ).await()
+            updateLocationOnServer(location)
+
+            return location
+        } catch (e: SecurityException) {
+            SunshineLogger.e("Location permission not granted", e)
+            return null
+        } catch (e: Exception) {
+            SunshineLogger.e("Error getting location", e)
+            return null
+        }
+    }
+
     private suspend fun updateLocationOnServer(location: Location?) {
         if (location == null) {
             return

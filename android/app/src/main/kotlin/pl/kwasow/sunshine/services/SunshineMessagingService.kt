@@ -11,6 +11,7 @@ import pl.kwasow.sunshine.managers.LocationManager
 import pl.kwasow.sunshine.managers.MemoriesManager
 import pl.kwasow.sunshine.managers.MessagingManager
 import pl.kwasow.sunshine.managers.NotificationManager
+import pl.kwasow.sunshine.managers.SettingsManager
 import pl.kwasow.sunshine.utils.SunshineLogger
 
 class SunshineMessagingService : FirebaseMessagingService() {
@@ -21,6 +22,7 @@ class SunshineMessagingService : FirebaseMessagingService() {
     private val locationManager by lazy { inject<LocationManager>() }
     private val memoriesManager by lazy { inject<MemoriesManager>() }
     private val notificationManager by lazy { inject<NotificationManager>() }
+    private val settingsManager by lazy { inject<SettingsManager>() }
 
     // ====== Interface methods
     override fun onNewToken(token: String) {
@@ -63,6 +65,10 @@ class SunshineMessagingService : FirebaseMessagingService() {
     }
 
     private fun handleRequestLocationMessage() {
+        if (!settingsManager.value.allowLocationRequests) {
+            return
+        }
+
         scope.launch {
             locationManager.value.requestLocation()
         }
