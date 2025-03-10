@@ -58,20 +58,29 @@ echo json_encode(
 );
 
 // Request location update from partner
-$topic = $user->getMissingYouRecipient()->getUserTopic();
-$data = [
-'type' => 'request_location'
-];
+// The default for the 'cached' param is true, to prevent accidental infinite
+// loops.
+$cached = true;
+if (isset($_GET['cached'])) {
+    $cached = $_GET['cached'];
+}
 
-try {
-    $result = sendTopicFirebaseMessage($topic, $data);
+if ($cached == false) {
+    $topic = $user->getMissingYouRecipient()->getUserTopic();
+    $data = [
+    'type' => 'request_location'
+    ];
 
-    if ($result == null) {
+    try {
+        $result = sendTopicFirebaseMessage($topic, $data);
+
+        if ($result == null) {
+            error_log("[ERROR] Error sending location request");
+        }
+    } catch (Exception $e) {
         error_log("[ERROR] Error sending location request");
+        error_log("[EXCEPTION]: " . $e->getMessage());
     }
-} catch (Exception $e) {
-    error_log("[ERROR] Error sending location request");
-    error_log("[EXCEPTION]: " . $e->getMessage());
 }
 
 mysqli_close($conn);
