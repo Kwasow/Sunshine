@@ -1,7 +1,9 @@
 package pl.kwasow.sunshine.data
 
 import android.location.Location
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class UserLocation(
     val userId: Int,
     val userName: String,

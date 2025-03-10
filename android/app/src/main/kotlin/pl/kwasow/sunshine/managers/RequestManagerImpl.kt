@@ -226,6 +226,7 @@ class RequestManagerImpl(
             try {
                 json.decodeFromString<T>(response.bodyAsText())
             } catch (e: Exception) {
+                SunshineLogger.d("Failed to decode json response", e)
                 null
             }
 

@@ -27,8 +27,8 @@ class LocationModuleViewModel(
         viewModelScope.launch {
             isLoading = true
 
-            requestUserLocation()
-            requestPartnerLocation()
+            locationManager.requestLocation()
+            locationManager.requestPartnerLocation(false)
 
             isLoading = false
         }
@@ -41,9 +41,4 @@ class LocationModuleViewModel(
 
     fun launchPermissionSettings(activity: Activity) =
         permissionManager.launchPermissionSettings(activity)
-
-    // ====== Private methods
-    private suspend fun requestUserLocation() = locationManager.requestLocation()
-
-    private suspend fun requestPartnerLocation() = locationManager.requestPartnerLocation(false)
 }

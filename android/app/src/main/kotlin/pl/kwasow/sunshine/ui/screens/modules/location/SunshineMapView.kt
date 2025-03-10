@@ -69,10 +69,10 @@ fun SunshineMapView(
             ),
         contentPadding = paddingValues,
     ) {
-//        val userLoc = userLocation.value
-//        if (userLoc != null) {
-//            CurrentLocationMarker(location = userLoc)
-//        }
+        val userLoc = userLocation.value
+        if (userLoc != null) {
+            CurrentLocationMarker(location = userLoc)
+        }
 
         val partnerLoc = partnerLocation.value
         if (partnerLoc != null) {
