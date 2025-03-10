@@ -57,5 +57,22 @@ echo json_encode(
     )
 );
 
+// Request location update from partner
+$topic = $user->getMissingYouRecipient()->getUserTopic();
+$data = [
+'type' => 'request_location'
+];
+
+try {
+    $result = sendTopicFirebaseMessage($topic, $data);
+
+    if ($result == null) {
+        error_log("[ERROR] Error sending location request");
+    }
+} catch (Exception $e) {
+    error_log("[ERROR] Error sending location request");
+    error_log("[EXCEPTION]: " . $e->getMessage());
+}
+
 mysqli_close($conn);
 exit();
