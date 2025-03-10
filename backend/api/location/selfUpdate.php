@@ -48,5 +48,22 @@ mysqli_stmt_bind_param(
 );
 mysqli_stmt_execute($stmt);
 
+// Notify partner location updated
+$topic = $user->getMissingYouRecipient()->getUserTopic();
+$data = [
+'type' => 'location_updated'
+];
+
+try {
+    $result = sendTopicFirebaseMessage($topic, $data);
+
+    if ($result == null) {
+        error_log("[ERROR] Error sending location updated message");
+    }
+} catch (Exception $e) {
+    error_log("[ERROR] Error sending location updated message");
+    error_log("[EXCEPTION]: " . $e->getMessage());
+}
+
 mysqli_close($conn);
 exit();
