@@ -38,6 +38,7 @@ class SunshineMessagingService : FirebaseMessagingService() {
             MessagingManager.MessageType.MISSING_YOU -> handleMissingYouMessage(data)
             MessagingManager.MessageType.DAILY_MEMORY -> handleDailyMemoryMessage()
             MessagingManager.MessageType.REQUEST_LOCATION -> handleRequestLocationMessage()
+            MessagingManager.MessageType.LOCATION_UPDATED -> handleLocationUpdatedMessage()
             else -> handleIncorrectMessage()
         }
     }
@@ -63,7 +64,13 @@ class SunshineMessagingService : FirebaseMessagingService() {
 
     private fun handleRequestLocationMessage() {
         scope.launch {
-            locationManager.value.sendLocationToPartner()
+            locationManager.value.requestLocation()
+        }
+    }
+
+    private fun handleLocationUpdatedMessage() {
+        scope.launch {
+            locationManager.value.requestPartnerLocation()
         }
     }
 

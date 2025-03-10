@@ -6,6 +6,7 @@ interface MessagingManager {
         MISSING_YOU("missing_you"),
         DAILY_MEMORY("daily_memory"),
         REQUEST_LOCATION("request_location"),
+        LOCATION_UPDATED("location_updated")
         ;
 
         companion object {
