@@ -6,7 +6,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -14,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.extensions.slideComposable
+import pl.kwasow.sunshine.ui.components.RootLayout
 import pl.kwasow.sunshine.ui.screens.home.HomeScreen
 import pl.kwasow.sunshine.ui.screens.login.LoginScreen
 import pl.kwasow.sunshine.ui.screens.modules.location.LocationModuleScreen
@@ -32,19 +32,10 @@ fun App() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background,
     ) {
-        ConstraintLayout {
-            val playbackControls = createRef()
-
-            NavContainer(modifier = Modifier.fillMaxSize())
-            BottomActions(
-                modifier =
-                    Modifier.constrainAs(playbackControls) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
-                    },
-            )
-        }
+        RootLayout(
+            bottomBar = { BottomActions() },
+            content = { NavContainer(modifier = Modifier.fillMaxSize()) }
+        )
     }
 }
 
