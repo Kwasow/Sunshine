@@ -145,7 +145,6 @@ dependencies {
     implementation(libs.koin.compose.navigation)
 
     // Compose
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
     implementation(libs.compose.accompanist.permissions)
     implementation(libs.compose.livedata)
     implementation(libs.compose.material)
