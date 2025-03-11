@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: read-all
     steps:
     - uses: actions/checkout@v4
     - name: set up JDK 21
@@ -33,6 +34,7 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
+    permissions: read-all
     steps:
     - uses: actions/checkout@v4
     - name: set up JDK 21
@@ -57,6 +59,7 @@ jobs:
 
   unit-test:
     runs-on: ubuntu-latest
+    permissions: read-all
     steps:
     - uses: actions/checkout@v4
     - name: set up JDK 21
