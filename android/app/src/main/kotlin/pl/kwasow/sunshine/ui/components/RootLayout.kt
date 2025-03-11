@@ -14,13 +14,13 @@ fun RootLayout(
 ) {
     Box {
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         ) {
             content()
         }
 
         Box(
-            modifier = Modifier.align(Alignment.BottomCenter)
+            modifier = Modifier.align(Alignment.BottomCenter),
         ) {
             bottomBar()
         }

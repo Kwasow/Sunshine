@@ -34,7 +34,7 @@ fun App() {
     ) {
         RootLayout(
             bottomBar = { BottomActions() },
-            content = { NavContainer(modifier = Modifier.fillMaxSize()) }
+            content = { NavContainer(modifier = Modifier.fillMaxSize()) },
         )
     }
 }

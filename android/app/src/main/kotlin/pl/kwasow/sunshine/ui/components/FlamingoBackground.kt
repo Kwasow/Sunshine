@@ -2,7 +2,6 @@ package pl.kwasow.sunshine.ui.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Icon
@@ -17,7 +16,7 @@ import pl.kwasow.sunshine.R
 private const val COLUMNS = 9
 
 @Composable
-fun FlamingoBackgroundLight(modifier: Modifier = Modifier.systemBarsPadding()) {
+fun FlamingoBackgroundLight(modifier: Modifier = Modifier) {
     FlamingoBackground(
         modifier = modifier,
         color = Color(0x60FD7295),
@@ -26,7 +25,7 @@ fun FlamingoBackgroundLight(modifier: Modifier = Modifier.systemBarsPadding()) {
 
 @Composable
 fun FlamingoBackground(
-    modifier: Modifier = Modifier.systemBarsPadding(),
+    modifier: Modifier = Modifier,
     color: Color = Color(0xFFFD7295),
 ) {
     val painter = painterResource(id = R.drawable.ic_flamingo)

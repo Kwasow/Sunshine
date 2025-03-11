@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import pl.kwasow.sunshine.ui.screens.modules.ModuleListItem
 import pl.kwasow.sunshine.ui.screens.modules.location.LocationModuleInfo
@@ -17,6 +18,7 @@ import pl.kwasow.sunshine.ui.screens.modules.whishlist.WishlistModuleInfo
 // ====== Public composables
 @Composable
 fun ModuleList(
+    navigationBarPadding: Dp,
     navigateToMemories: () -> Unit,
     navigateToMusic: () -> Unit,
     navigateToWishlist: () -> Unit,
@@ -24,7 +26,10 @@ fun ModuleList(
     navigateToLocation: () -> Unit,
 ) {
     Column(
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+        modifier =
+            Modifier
+                .padding(horizontal = 16.dp, vertical = 12.dp)
+                .padding(bottom = navigationBarPadding),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         if (MemoriesModuleInfo.enabled) {
@@ -69,6 +74,7 @@ fun ModuleList(
 @Preview
 private fun ModuleListPreview() {
     ModuleList(
+        navigationBarPadding = 0.dp,
         navigateToMemories = {},
         navigateToMusic = {},
         navigateToWishlist = {},
