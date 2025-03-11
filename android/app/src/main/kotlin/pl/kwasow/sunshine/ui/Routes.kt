@@ -10,6 +10,9 @@ object HomeScreen
 object LoginScreen
 
 @Serializable
+data class PhotoScreen(val uri: String)
+
+@Serializable
 object SettingsScreen
 
 // ====== Modules

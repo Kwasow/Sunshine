@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.LoadingView
-import pl.kwasow.sunshine.ui.components.SimplePhotoView
+import pl.kwasow.sunshine.ui.components.PhotoView
 
 // ====== Public composables
 @Composable
@@ -122,7 +122,7 @@ private fun Metadata(
 ) {
     with(rowScope) {
         Card(modifier = Modifier.padding(end = 8.dp)) {
-            SimplePhotoView(
+            PhotoView(
                 uri = cover.toString(),
                 contentDescription = stringResource(id = R.string.contentDescription_album_cover),
                 modifier =
@@ -130,6 +130,7 @@ private fun Metadata(
                         .height(48.dp)
                         .aspectRatio(1f),
                 contentScale = ContentScale.Crop,
+                clickable = false,
             )
         }
         Column(modifier = Modifier.weight(1f)) {

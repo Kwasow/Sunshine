@@ -28,12 +28,14 @@ import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.FlamingoBackgroundLight
 import pl.kwasow.sunshine.ui.components.SunshineTopAppBar
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WishlistModuleScreen(onBackPressed: () -> Unit) {
+fun WishlistModuleScreen() {
     val viewModel = koinViewModel<WishlistModuleViewModel>()
+    val navigation = LocalSunshineNavigation.current
 
     LaunchedEffect(true) {
         viewModel.refreshWishlist()
@@ -43,29 +45,24 @@ fun WishlistModuleScreen(onBackPressed: () -> Unit) {
         topBar = {
             SunshineTopAppBar(
                 title = stringResource(WishlistModuleInfo.nameId),
-                onBackPressed = onBackPressed,
+                onBackPressed = navigation.navigateBack,
             )
         },
     ) { paddingValues ->
         FlamingoBackgroundLight(modifier = Modifier.padding(paddingValues))
 
-        MainView(
-            onBackPressed = onBackPressed,
-            paddingValues = paddingValues,
-        )
+        MainView(paddingValues = paddingValues)
     }
 }
 
 // ====== Private composables
 @Composable
-private fun MainView(
-    onBackPressed: () -> Unit,
-    paddingValues: PaddingValues,
-) {
+private fun MainView(paddingValues: PaddingValues) {
     val viewModel = koinViewModel<WishlistModuleViewModel>()
+    val navigation = LocalSunshineNavigation.current
 
     if (viewModel.tabs.isEmpty()) {
-        return errorLoadingWishlist(onBackPressed, LocalContext.current)
+        return errorLoadingWishlist(navigation.navigateBack, LocalContext.current)
     }
 
     WishlistTabs(paddingValues = paddingValues)
@@ -126,5 +123,5 @@ private fun errorLoadingWishlist(
 @Preview
 @Composable
 private fun WishlistModuleScreenPreview() {
-    WishlistModuleScreen(onBackPressed = {})
+    WishlistModuleScreen()
 }

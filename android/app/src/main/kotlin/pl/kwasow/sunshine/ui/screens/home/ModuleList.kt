@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 import pl.kwasow.sunshine.ui.screens.modules.ModuleListItem
 import pl.kwasow.sunshine.ui.screens.modules.location.LocationModuleInfo
 import pl.kwasow.sunshine.ui.screens.modules.memories.MemoriesModuleInfo
@@ -17,14 +18,9 @@ import pl.kwasow.sunshine.ui.screens.modules.whishlist.WishlistModuleInfo
 
 // ====== Public composables
 @Composable
-fun ModuleList(
-    navigationBarPadding: Dp,
-    navigateToMemories: () -> Unit,
-    navigateToMusic: () -> Unit,
-    navigateToWishlist: () -> Unit,
-    navigateToMissingYou: () -> Unit,
-    navigateToLocation: () -> Unit,
-) {
+fun ModuleList(navigationBarPadding: Dp) {
+    val navigation = LocalSunshineNavigation.current
+
     Column(
         modifier =
             Modifier
@@ -35,35 +31,35 @@ fun ModuleList(
         if (MemoriesModuleInfo.enabled) {
             ModuleListItem(
                 moduleInfo = MemoriesModuleInfo,
-                navigateToModule = navigateToMemories,
+                navigateToModule = navigation.navigateToMemories,
             )
         }
 
         if (MusicModuleInfo.enabled) {
             ModuleListItem(
                 moduleInfo = MusicModuleInfo,
-                navigateToModule = navigateToMusic,
+                navigateToModule = navigation.navigateToMusic,
             )
         }
 
         if (WishlistModuleInfo.enabled) {
             ModuleListItem(
                 moduleInfo = WishlistModuleInfo,
-                navigateToModule = navigateToWishlist,
+                navigateToModule = navigation.navigateToWishlist,
             )
         }
 
         if (MissingYouModuleInfo.enabled) {
             ModuleListItem(
                 moduleInfo = MissingYouModuleInfo,
-                navigateToModule = navigateToMissingYou,
+                navigateToModule = navigation.navigateToMissingYou,
             )
         }
 
         if (LocationModuleInfo.enabled) {
             ModuleListItem(
                 moduleInfo = LocationModuleInfo,
-                navigateToModule = navigateToLocation,
+                navigateToModule = navigation.navigateToLocation,
             )
         }
     }
@@ -73,12 +69,5 @@ fun ModuleList(
 @Composable
 @Preview
 private fun ModuleListPreview() {
-    ModuleList(
-        navigationBarPadding = 0.dp,
-        navigateToMemories = {},
-        navigateToMusic = {},
-        navigateToWishlist = {},
-        navigateToMissingYou = {},
-        navigateToLocation = {},
-    )
+    ModuleList(navigationBarPadding = 0.dp)
 }

@@ -29,23 +29,17 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.FlamingoBackground
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun HomeScreen(
-    navigateToSettings: () -> Unit,
-    navigateToMemories: () -> Unit,
-    navigateToMusic: () -> Unit,
-    navigateToWishlist: () -> Unit,
-    navigateToMissingYou: () -> Unit,
-    navigateToLocation: () -> Unit,
-    navigateToLogin: () -> Unit,
-) {
+fun HomeScreen() {
     val viewModel = koinViewModel<HomeScreenViewModel>()
+    val navigation = LocalSunshineNavigation.current
 
     LaunchedEffect(true) {
-        viewModel.doLaunchTasks(navigateToLogin)
+        viewModel.doLaunchTasks(navigation.navigateToLogin)
     }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -64,17 +58,10 @@ fun HomeScreen(
         ) {
             TopBar(
                 statusBarPadding = paddingValues.calculateTopPadding(),
-                navigateToSettings = navigateToSettings,
+                navigateToSettings = navigation.navigateToSettings,
             )
             WidgetsView()
-            ModuleList(
-                navigationBarPadding = paddingValues.calculateBottomPadding(),
-                navigateToMemories = navigateToMemories,
-                navigateToMusic = navigateToMusic,
-                navigateToWishlist = navigateToWishlist,
-                navigateToMissingYou = navigateToMissingYou,
-                navigateToLocation = navigateToLocation,
-            )
+            ModuleList(navigationBarPadding = paddingValues.calculateBottomPadding())
         }
     }
 }
@@ -118,13 +105,5 @@ private fun TopBar(
 @Composable
 @Preview
 private fun HomeScreenPreview() {
-    HomeScreen(
-        navigateToSettings = {},
-        navigateToMemories = {},
-        navigateToMusic = {},
-        navigateToWishlist = {},
-        navigateToMissingYou = {},
-        navigateToLocation = {},
-        navigateToLogin = {},
-    )
+    HomeScreen()
 }

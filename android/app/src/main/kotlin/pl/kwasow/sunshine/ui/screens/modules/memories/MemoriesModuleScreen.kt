@@ -34,12 +34,14 @@ import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.FlamingoBackgroundLight
 import pl.kwasow.sunshine.ui.components.SunshineTopAppBar
 import pl.kwasow.sunshine.ui.components.YearPickerDialog
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @OptIn(ExperimentalHazeMaterialsApi::class)
 @Composable
-fun MemoriesModuleScreen(onBackPressed: () -> Unit) {
+fun MemoriesModuleScreen() {
     val viewModel = koinViewModel<MemoriesModuleViewModel>()
+    val navigation = LocalSunshineNavigation.current
     val hazeState = remember { HazeState() }
     val style = HazeMaterials.ultraThin(MaterialTheme.colorScheme.surface)
     var yearPickerOpen by remember { mutableStateOf(false) }
@@ -51,7 +53,7 @@ fun MemoriesModuleScreen(onBackPressed: () -> Unit) {
     Scaffold(
         topBar = {
             AppBar(
-                onBackPressed = onBackPressed,
+                onBackPressed = navigation.navigateBack,
                 onOpenYearPicker = { yearPickerOpen = true },
                 modifier = Modifier.hazeEffect(state = hazeState, style = style),
             )
@@ -179,5 +181,5 @@ private fun PullToRefreshContainer(
 @Preview
 @Composable
 private fun MemoriesModuleScreenPreview() {
-    MemoriesModuleScreen(onBackPressed = {})
+    MemoriesModuleScreen()
 }

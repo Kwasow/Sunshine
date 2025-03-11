@@ -14,15 +14,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.ui.components.FlamingoBackgroundLight
 import pl.kwasow.sunshine.ui.components.SunshineTopAppBar
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MusicModuleScreen(
-    onBackPressed: () -> Unit,
-    navigateToAlbum: (String) -> Unit,
-) {
+fun MusicModuleScreen() {
     val viewModel = koinViewModel<MusicModuleViewModel>()
+    val navigation = LocalSunshineNavigation.current
 
     LaunchedEffect(true) {
         viewModel.refreshAlbumList(true)
@@ -32,26 +31,20 @@ fun MusicModuleScreen(
         topBar = {
             SunshineTopAppBar(
                 title = stringResource(MusicModuleInfo.nameId),
-                onBackPressed = onBackPressed,
+                onBackPressed = navigation.navigateBack,
             )
         },
     ) { paddingValues ->
         FlamingoBackgroundLight(modifier = Modifier.padding(paddingValues))
 
-        MainView(
-            paddingValues = paddingValues,
-            navigateToAlbum = navigateToAlbum,
-        )
+        MainView(paddingValues = paddingValues)
     }
 }
 
 // ====== Private composables
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun MainView(
-    paddingValues: PaddingValues,
-    navigateToAlbum: (String) -> Unit,
-) {
+private fun MainView(paddingValues: PaddingValues) {
     val viewModel = koinViewModel<MusicModuleViewModel>()
 
     fun refresh(force: Boolean = false) {
@@ -67,10 +60,7 @@ private fun MainView(
                 .padding(paddingValues),
     ) {
         if (viewModel.albumListLoaded) {
-            AlbumListView(
-                navigateToAlbum = navigateToAlbum,
-                albums = viewModel.albumList,
-            )
+            AlbumListView(albums = viewModel.albumList)
         }
     }
 }
@@ -80,8 +70,5 @@ private fun MainView(
 @Preview
 @Composable
 private fun MusicModuleScreenPreview() {
-    MusicModuleScreen(
-        onBackPressed = {},
-        navigateToAlbum = {},
-    )
+    MusicModuleScreen()
 }

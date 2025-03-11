@@ -41,18 +41,20 @@ import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.FlamingoBackgroundLight
 import pl.kwasow.sunshine.ui.components.SunshineTopAppBar
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MissingYouModuleScreen(onBackPressed: () -> Unit) {
+fun MissingYouModuleScreen() {
     val viewModel = koinViewModel<MissingYouModuleViewModel>()
+    val navigation = LocalSunshineNavigation.current
 
     Scaffold(
         topBar = {
             SunshineTopAppBar(
                 title = stringResource(MissingYouModuleInfo.nameId),
-                onBackPressed = onBackPressed,
+                onBackPressed = navigation.navigateBack,
             )
         },
         snackbarHost = { SnackbarHost(hostState = viewModel.snackbarHostState) },
@@ -150,5 +152,5 @@ private fun NecklaceIcon(
 @Preview
 @Composable
 private fun MissingYouModuleScreenPreview() {
-    MissingYouModuleScreen(onBackPressed = {})
+    MissingYouModuleScreen()
 }

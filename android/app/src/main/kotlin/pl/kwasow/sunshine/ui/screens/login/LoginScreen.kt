@@ -21,16 +21,17 @@ import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.ErrorDialog
 import pl.kwasow.sunshine.ui.components.FlamingoBackground
 import pl.kwasow.sunshine.ui.components.LoadingView
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @Composable
-fun LoginScreen(navigateToHome: () -> Unit) {
+fun LoginScreen() {
     val viewModel = koinViewModel<LoginScreenViewModel>()
 
     Box(modifier = Modifier.fillMaxSize()) {
         FlamingoBackground(modifier = Modifier)
 
-        MainView(navigateToHome = navigateToHome)
+        MainView()
 
         if (viewModel.isLoading) {
             // We use the clickable modifier so that the loading indicator intercepts
@@ -57,8 +58,9 @@ fun LoginScreen(navigateToHome: () -> Unit) {
 
 // ====== Private composables
 @Composable
-private fun MainView(navigateToHome: () -> Unit) {
+private fun MainView() {
     val viewModel = koinViewModel<LoginScreenViewModel>()
+    val navigation = LocalSunshineNavigation.current
 
     Column(
         modifier = Modifier.systemBarsPadding(),
@@ -72,7 +74,7 @@ private fun MainView(navigateToHome: () -> Unit) {
             painter = painterResource(id = R.drawable.karonia),
             contentDescription = stringResource(id = R.string.contentDescription_karonia_logo),
         )
-        GoogleSignInButton(onClick = { viewModel.launchLogin(navigateToHome) })
+        GoogleSignInButton(onClick = { viewModel.launchLogin(navigation.navigateToHome) })
     }
 }
 
@@ -81,5 +83,5 @@ private fun MainView(navigateToHome: () -> Unit) {
 @Preview
 @Composable
 private fun LoginScreenPreview() {
-    LoginScreen(navigateToHome = {})
+    LoginScreen()
 }
