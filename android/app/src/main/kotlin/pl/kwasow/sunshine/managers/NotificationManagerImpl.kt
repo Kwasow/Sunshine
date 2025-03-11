@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import pl.kwasow.sunshine.BuildConfig
 import pl.kwasow.sunshine.MainActivity
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.data.NotificationChannelInfo
