@@ -24,9 +24,10 @@ import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 @Composable
 fun PhotoPreviewScreen(uri: String) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Color.Black),
     ) {
         TopAppBar()
         PhotoView(
@@ -46,17 +47,20 @@ private fun TopAppBar() {
     CenterAlignedTopAppBar(
         title = {},
         colors =
-        TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = Color.Transparent,
-            navigationIconContentColor = Color.White,
-        ),
+            TopAppBarDefaults.centerAlignedTopAppBarColors(
+                containerColor = Color.Transparent,
+                navigationIconContentColor = Color.White,
+            ),
         navigationIcon = {
             IconButton(
                 onClick = navigation.navigateBack,
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                    contentDescription = stringResource(id = R.string.contentDescription_navigate_back),
+                    contentDescription =
+                        stringResource(
+                            id = R.string.contentDescription_navigate_back,
+                        ),
                 )
             }
         },
