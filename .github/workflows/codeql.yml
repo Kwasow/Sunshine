@@ -65,7 +65,7 @@ jobs:
       run: | 
         cp secrets.default.properties secrets.properties
         echo $JSON > app/google-services.json
-        ./gradlew build
+        ./gradlew assembleRelease
       working-directory: android
 
     - name: Perform CodeQL Analysis
