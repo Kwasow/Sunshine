@@ -3,10 +3,12 @@ package pl.kwasow.sunshine.managers
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.PendingIntent
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import pl.kwasow.sunshine.BuildConfig
 import pl.kwasow.sunshine.MainActivity
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.data.NotificationChannelInfo
@@ -78,7 +80,9 @@ class NotificationManagerImpl(
 
     override fun postMissingYouNotification(senderName: String) {
         val startAppIntent =
-            Intent(context, MainActivity::class.java).apply {
+            Intent(Intent.ACTION_MAIN).apply {
+                component = ComponentName(context, MainActivity::class.java)
+                `package` = context.packageName
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             }
         val startAppPendingIntent =
