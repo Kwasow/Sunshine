@@ -3,6 +3,7 @@ package pl.kwasow.sunshine.ui.screens.home
 import android.os.Build
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -51,32 +52,25 @@ fun HomeScreen() {
     }
 
     Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
-        FlamingoBackground()
+        Box(modifier = Modifier.padding(top = paddingValues.calculateTopPadding())) {
+            FlamingoBackground()
 
-        Column(
-            modifier = Modifier.verticalScroll(rememberScrollState()),
-        ) {
-            TopBar(
-                statusBarPadding = paddingValues.calculateTopPadding(),
-                navigateToSettings = navigation.navigateToSettings,
-            )
-            WidgetsView()
-            ModuleList(navigationBarPadding = paddingValues.calculateBottomPadding())
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+            ) {
+                TopBar(navigateToSettings = navigation.navigateToSettings)
+                WidgetsView()
+                ModuleList(navigationBarPadding = paddingValues.calculateBottomPadding())
+            }
         }
     }
 }
 
 // ====== Private composables
 @Composable
-private fun TopBar(
-    statusBarPadding: Dp,
-    navigateToSettings: () -> Unit,
-) {
+private fun TopBar(navigateToSettings: () -> Unit) {
     Row(
-        modifier =
-            Modifier
-                .fillMaxWidth()
-                .padding(top = statusBarPadding),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
