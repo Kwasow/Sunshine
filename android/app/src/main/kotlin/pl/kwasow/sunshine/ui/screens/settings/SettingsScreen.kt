@@ -31,18 +31,18 @@ import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.BuildConfig
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.SunshineTopAppBar
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(
-    onBackPressed: () -> Unit,
-    onLogout: () -> Unit,
-) {
+fun SettingsScreen() {
+    val navigation = LocalSunshineNavigation.current
+
     Scaffold(
         topBar = {
             SunshineTopAppBar(
-                onBackPressed = onBackPressed,
+                onBackPressed = navigation.navigateBack,
                 title = stringResource(id = R.string.settings_label),
             )
         },
@@ -55,7 +55,7 @@ fun SettingsScreen(
         ) {
             AppDetails()
             InfoSettingsSection()
-            GeneralSettingsSection(onLogout = onLogout)
+            GeneralSettingsSection()
         }
     }
 }
@@ -101,8 +101,9 @@ private fun AppDetails() {
 }
 
 @Composable
-private fun GeneralSettingsSection(onLogout: () -> Unit) {
+private fun GeneralSettingsSection() {
     val viewModel = koinViewModel<SettingsScreenViewModel>()
+    val navigation = LocalSunshineNavigation.current
 
     SettingsSection(title = stringResource(id = R.string.settings_general)) {
         BackgroundLocationEntry()
@@ -123,7 +124,7 @@ private fun GeneralSettingsSection(onLogout: () -> Unit) {
             iconTint = MaterialTheme.colorScheme.error,
             name = stringResource(id = R.string.settings_logout),
             description = stringResource(id = R.string.settings_logout_description),
-            onClick = { viewModel.signOut(onLogout) },
+            onClick = { viewModel.signOut(navigation.navigateToLogin) },
         )
     }
 }
@@ -146,8 +147,5 @@ private fun InfoSettingsSection() {
 @Preview
 @Composable
 private fun SettingsScreenPreview() {
-    SettingsScreen(
-        onBackPressed = {},
-        onLogout = {},
-    )
+    SettingsScreen()
 }

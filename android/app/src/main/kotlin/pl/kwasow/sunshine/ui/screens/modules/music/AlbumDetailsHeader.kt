@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.data.Album
-import pl.kwasow.sunshine.ui.components.SimplePhotoView
+import pl.kwasow.sunshine.ui.components.PhotoView
 
 // ====== Public composables
 @Composable
@@ -85,10 +85,11 @@ private fun AlbumCover(uri: Uri) {
         colors = CardDefaults.cardColors(containerColor = Color.LightGray),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
     ) {
-        SimplePhotoView(
-            uri = uri,
+        PhotoView(
+            uri = uri.toString(),
             contentDescription = stringResource(id = R.string.contentDescription_album_cover),
             contentScale = ContentScale.Crop,
+            clickable = false,
         )
     }
 }

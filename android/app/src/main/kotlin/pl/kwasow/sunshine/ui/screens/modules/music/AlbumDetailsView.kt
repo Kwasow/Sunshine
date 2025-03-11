@@ -17,25 +17,24 @@ import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.SunshineTopAppBar
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AlbumDetailsView(
-    onBackPressed: () -> Unit,
-    albumUuid: String,
-) {
+fun AlbumDetailsView(albumUuid: String) {
     val viewModel = koinViewModel<MusicModuleViewModel>()
+    val navigation = LocalSunshineNavigation.current
 
     val album =
         viewModel.getAlbumByUuid(albumUuid)
-            ?: return albumNotFound(onBackPressed, LocalContext.current)
+            ?: return albumNotFound(navigation.navigateBack, LocalContext.current)
 
     Scaffold(
         topBar = {
             SunshineTopAppBar(
                 title = album.title,
-                onBackPressed = onBackPressed,
+                onBackPressed = navigation.navigateBack,
             )
         },
     ) { paddingValues ->

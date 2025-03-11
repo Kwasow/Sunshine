@@ -9,13 +9,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -29,23 +29,17 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.FlamingoBackground
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun HomeScreen(
-    navigateToSettings: () -> Unit,
-    navigateToMemories: () -> Unit,
-    navigateToMusic: () -> Unit,
-    navigateToWishlist: () -> Unit,
-    navigateToMissingYou: () -> Unit,
-    navigateToLocation: () -> Unit,
-    navigateToLogin: () -> Unit,
-) {
+fun HomeScreen() {
     val viewModel = koinViewModel<HomeScreenViewModel>()
+    val navigation = LocalSunshineNavigation.current
 
     LaunchedEffect(true) {
-        viewModel.doLaunchTasks(navigateToLogin)
+        viewModel.doLaunchTasks(navigation.navigateToLogin)
     }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -56,24 +50,17 @@ fun HomeScreen(
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        FlamingoBackground()
+    Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
+        Box(modifier = Modifier.padding(top = paddingValues.calculateTopPadding())) {
+            FlamingoBackground()
 
-        Column(
-            modifier =
-                Modifier
-                    .systemBarsPadding()
-                    .verticalScroll(rememberScrollState()),
-        ) {
-            TopBar(navigateToSettings = navigateToSettings)
-            WidgetsView()
-            ModuleList(
-                navigateToMemories = navigateToMemories,
-                navigateToMusic = navigateToMusic,
-                navigateToWishlist = navigateToWishlist,
-                navigateToMissingYou = navigateToMissingYou,
-                navigateToLocation = navigateToLocation,
-            )
+            Column(
+                modifier = Modifier.verticalScroll(rememberScrollState()),
+            ) {
+                TopBar(navigateToSettings = navigation.navigateToSettings)
+                WidgetsView()
+                ModuleList(navigationBarPadding = paddingValues.calculateBottomPadding())
+            }
         }
     }
 }
@@ -111,13 +98,5 @@ private fun TopBar(navigateToSettings: () -> Unit) {
 @Composable
 @Preview
 private fun HomeScreenPreview() {
-    HomeScreen(
-        navigateToSettings = {},
-        navigateToMemories = {},
-        navigateToMusic = {},
-        navigateToWishlist = {},
-        navigateToMissingYou = {},
-        navigateToLocation = {},
-        navigateToLogin = {},
-    )
+    HomeScreen()
 }

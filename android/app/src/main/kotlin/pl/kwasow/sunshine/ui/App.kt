@@ -5,15 +5,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.extensions.slideComposable
+import pl.kwasow.sunshine.ui.components.RootLayout
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
+import pl.kwasow.sunshine.ui.composition.SunshineNavigation
 import pl.kwasow.sunshine.ui.screens.home.HomeScreen
 import pl.kwasow.sunshine.ui.screens.login.LoginScreen
 import pl.kwasow.sunshine.ui.screens.modules.location.LocationModuleScreen
@@ -22,6 +26,7 @@ import pl.kwasow.sunshine.ui.screens.modules.missingyou.MissingYouModuleScreen
 import pl.kwasow.sunshine.ui.screens.modules.music.AlbumDetailsView
 import pl.kwasow.sunshine.ui.screens.modules.music.MusicModuleScreen
 import pl.kwasow.sunshine.ui.screens.modules.whishlist.WishlistModuleScreen
+import pl.kwasow.sunshine.ui.screens.photo.PhotoPreviewScreen
 import pl.kwasow.sunshine.ui.screens.settings.SettingsScreen
 import pl.kwasow.sunshine.ui.widgets.music.PlaybackControls
 
@@ -32,19 +37,10 @@ fun App() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background,
     ) {
-        ConstraintLayout {
-            val playbackControls = createRef()
-
-            NavContainer(modifier = Modifier.fillMaxSize())
-            BottomActions(
-                modifier =
-                    Modifier.constrainAs(playbackControls) {
-                        start.linkTo(parent.start)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
-                    },
-            )
-        }
+        RootLayout(
+            bottomBar = { BottomActions() },
+            content = { NavContainer(modifier = Modifier.fillMaxSize()) },
+        )
     }
 }
 
@@ -59,62 +55,48 @@ private fun NavContainer(modifier: Modifier = Modifier) {
     ) {
         // ====== Main navigation
         slideComposable<HomeScreen> {
-            HomeScreen(
-                navigateToSettings = { navController.navigate(SettingsScreen) },
-                navigateToMemories = { navController.navigate(MemoriesScreen) },
-                navigateToMusic = { navController.navigate(MusicScreen) },
-                navigateToWishlist = { navController.navigate(WishlistScreen) },
-                navigateToMissingYou = { navController.navigate(MissingYouScreen) },
-                navigateToLocation = { navController.navigate(LocationScreen) },
-                navigateToLogin = { navController.navigate(LoginScreen) { popUpTo(0) } },
-            )
+            HomeScreen()
         }
 
         slideComposable<LoginScreen> {
-            LoginScreen(navigateToHome = {
-                navController.navigate(HomeScreen) { popUpTo(0) }
-            })
+            LoginScreen()
+        }
+
+        composable<PhotoScreen> { backStackEntry ->
+            val photo: PhotoScreen = backStackEntry.toRoute()
+
+            PhotoPreviewScreen(uri = photo.uri)
         }
 
         slideComposable<SettingsScreen> {
-            SettingsScreen(
-                onBackPressed = { navController.popBackStack() },
-                onLogout = { navController.navigate(LoginScreen) { popUpTo(0) } },
-            )
+            SettingsScreen()
         }
 
         // ====== Modules
         slideComposable<MemoriesScreen> {
-            MemoriesModuleScreen(onBackPressed = { navController.popBackStack() })
+            MemoriesModuleScreen()
         }
 
         slideComposable<MusicScreen> {
-            MusicModuleScreen(
-                onBackPressed = { navController.popBackStack() },
-                navigateToAlbum = { albumUuid ->
-                    navController.navigate(AlbumScreen(albumUuid = albumUuid))
-                },
-            )
+            MusicModuleScreen()
         }
+
         slideComposable<AlbumScreen> { backStackEntry ->
             val album: AlbumScreen = backStackEntry.toRoute()
 
-            AlbumDetailsView(
-                onBackPressed = { navController.popBackStack() },
-                albumUuid = album.albumUuid,
-            )
+            AlbumDetailsView(albumUuid = album.albumUuid)
         }
 
         slideComposable<WishlistScreen> {
-            WishlistModuleScreen(onBackPressed = { navController.popBackStack() })
+            WishlistModuleScreen()
         }
 
         slideComposable<MissingYouScreen> {
-            MissingYouModuleScreen(onBackPressed = { navController.popBackStack() })
+            MissingYouModuleScreen()
         }
 
         slideComposable<LocationScreen> {
-            LocationModuleScreen(onBackPressed = { navController.popBackStack() })
+            LocationModuleScreen()
         }
     }
 }
@@ -126,13 +108,29 @@ private fun SunshineNavHost(
     builder: NavGraphBuilder.() -> Unit,
 ) {
     val viewModel = koinViewModel<AppViewModel>()
+    val sunshineNavigation =
+        SunshineNavigation(
+            navigateToHome = { navController.navigate(HomeScreen) { popUpTo(0) } },
+            navigateToLogin = { navController.navigate(LoginScreen) { popUpTo(0) } },
+            navigateToPhoto = { navController.navigate(PhotoScreen(it)) },
+            navigateToSettings = { navController.navigate(SettingsScreen) },
+            navigateToMemories = { navController.navigate(MemoriesScreen) },
+            navigateToMusic = { navController.navigate(MusicScreen) },
+            navigateToMusicAlbum = { navController.navigate(AlbumScreen(it)) },
+            navigateToWishlist = { navController.navigate(WishlistScreen) },
+            navigateToMissingYou = { navController.navigate(MissingYouScreen) },
+            navigateToLocation = { navController.navigate(LocationScreen) },
+            navigateBack = { navController.popBackStack() },
+        )
 
-    NavHost(
-        navController = navController,
-        startDestination = viewModel.getInitialRoute(),
-        modifier = modifier,
-        builder = builder,
-    )
+    CompositionLocalProvider(LocalSunshineNavigation provides sunshineNavigation) {
+        NavHost(
+            navController = navController,
+            startDestination = viewModel.getInitialRoute(),
+            modifier = modifier,
+            builder = builder,
+        )
+    }
 }
 
 @Composable

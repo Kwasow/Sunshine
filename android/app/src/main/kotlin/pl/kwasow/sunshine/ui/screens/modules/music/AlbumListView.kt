@@ -27,14 +27,12 @@ import androidx.compose.ui.unit.sp
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.data.Album
-import pl.kwasow.sunshine.ui.components.SimplePhotoView
+import pl.kwasow.sunshine.ui.components.PhotoView
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @Composable
-fun AlbumListView(
-    navigateToAlbum: (String) -> Unit,
-    albums: List<Album>,
-) {
+fun AlbumListView(albums: List<Album>) {
     if (albums.isEmpty()) {
         NoAlbumsView()
         return
@@ -47,21 +45,16 @@ fun AlbumListView(
                 .navigationBarsPadding(),
     ) {
         itemsIndexed(albums) { _, album ->
-            AlbumView(
-                navigateToAlbum = navigateToAlbum,
-                album = album,
-            )
+            AlbumView(album = album)
         }
     }
 }
 
 // ====== Private composables
 @Composable
-private fun AlbumView(
-    navigateToAlbum: (String) -> Unit,
-    album: Album,
-) {
+private fun AlbumView(album: Album) {
     val viewModel = koinViewModel<MusicModuleViewModel>()
+    val navigation = LocalSunshineNavigation.current
 
     ElevatedCard(
         modifier =
@@ -69,16 +62,17 @@ private fun AlbumView(
                 .fillMaxWidth()
                 .padding(start = 12.dp, end = 12.dp, top = 12.dp)
                 .aspectRatio(2f / 1f),
-        onClick = { navigateToAlbum(album.uuid) },
+        onClick = { navigation.navigateToMusicAlbum(album.uuid) },
     ) {
         Box(
             contentAlignment = Alignment.BottomStart,
         ) {
-            SimplePhotoView(
+            PhotoView(
                 modifier = Modifier.fillMaxWidth(),
-                uri = viewModel.getAlbumCoverUri(album),
+                uri = viewModel.getAlbumCoverUri(album).toString(),
                 contentDescription = stringResource(id = R.string.contentDescription_album_cover),
                 contentScale = ContentScale.Crop,
+                clickable = false,
             )
 
             AlbumDetailsPhotoOverlay(album)
@@ -141,8 +135,5 @@ private fun NoAlbumsView() {
 @Preview
 @Composable
 private fun AlbumListViewPreviewEmpty() {
-    AlbumListView(
-        navigateToAlbum = {},
-        albums = emptyList(),
-    )
+    AlbumListView(albums = emptyList())
 }

@@ -32,18 +32,20 @@ import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.AnimatedRefreshButton
 import pl.kwasow.sunshine.ui.components.SunshineTopAppBar
+import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
 @OptIn(ExperimentalHazeMaterialsApi::class)
 @Composable
-fun LocationModuleScreen(onBackPressed: () -> Unit) {
+fun LocationModuleScreen() {
+    val navigation = LocalSunshineNavigation.current
     val hazeState = remember { HazeState() }
     val style = HazeMaterials.ultraThin(MaterialTheme.colorScheme.surface)
 
     Scaffold(
         topBar = {
             AppBar(
-                onBackPressed = onBackPressed,
+                onBackPressed = navigation.navigateBack,
                 hazeState = hazeState,
                 style = style,
             )
