@@ -52,7 +52,9 @@ class NotificationManagerImpl(
     // ====== Public methods
     override fun postMemoryNotification() {
         val startAppIntent =
-            Intent(context, MainActivity::class.java).apply {
+            Intent(Intent.ACTION_MAIN).apply {
+                component = ComponentName(context, MainActivity::class.java)
+                `package` = context.packageName
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             }
         val startAppPendingIntent =
