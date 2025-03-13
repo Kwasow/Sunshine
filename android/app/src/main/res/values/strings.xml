@@ -3,12 +3,9 @@
 
     <!-- Login -->
     <string name="login_error_no_access">Nie masz uprawnień do korzystania z tej aplikacji. Spróbuj zalogować się innym kontem.</string>
-    <string name="login_error_no_connection">Nie udało się połączyć z serwerem</string>
-    <string name="login_error">Błąd logowania</string>
+    <string name="login_error_no_connection">Nie udało się połączyć z serwerem.</string>
+    <string name="login_error">Nieznany błąd logowania</string>
     <string name="login_google">Zaloguj przez Google</string>
-
-    <!-- Home screen -->
-    <string name="modules_label">Moduły</string>
 
     <!-- Settings screen -->
     <string name="settings_label">Ustawienia</string>
@@ -41,33 +38,28 @@
 
     <!-- Module: Memories -->
     <string name="module_memories_name">Wspomnienia</string>
-    <string name="module_memories_subtitle">Zbiór naszych wspólnych wspomnień</string>
-    <string name="module_memories_year">Rok %1$d (%2$d)</string>
     <string name="module_memories_no_memories">Nie udało się załadować wspomnień</string>
-    <string name="module_memories_choose_year">Wybierz rok</string>
 
     <!-- Widget: Memories -->
     <string name="widget_memories_no_memories">Kocham Cię ❤️</string>
 
     <!-- Module: Music -->
     <string name="module_music_name">Piosenki</string>
-    <string name="module_music_subtitle">Łysy Typ i Ronia śpiewają</string>
     <string name="module_music_no_albums">Nie udało się załadować albumów</string>
     <string name="module_music_delete_dialog_header">Usuwanie albumu</string>
     <string name="module_music_delete_dialog_text">Czy na pewno chcesz usunąć album \"%1$s\"?</string>
 
     <!-- Module: Wishlist -->
     <string name="module_wishlist_name">Prezenty</string>
-    <string name="module_wishlist_subtitle">Lista potencjalnych prezentów</string>
     <string name="module_wishlist_wish_entry_hint">Zacznij pisać…</string>
-    <string name="module_wishlist_delete_dialog_header">Czy na pewno chcesz usunąć ten prezent z listy?</string>
+    <string name="module_wishlist_delete_dialog_header">Usuwanie prezentu</string>
+    <string name="module_wishlist_delete_dialog_text">Czy na pewno chcesz usunąć \"%1$s\" z listy?</string>
     <string name="module_wishlist_add_failed">Nie udało się dodać życzenia</string>
     <string name="module_wishlist_update_failed">Nie udało się zaaktualizować życzenia</string>
     <string name="module_wishlist_remove_failed">Nie udało się usunąć życzenia</string>
 
     <!-- Module: Missing You -->
     <string name="module_missingyou_name">Tęsknota</string>
-    <string name="module_missingyou_subtitle">Naciśnij go, gdy tęsknisz</string>
     <string name="module_missingyou_miss_you">Tęsknię</string>
     <string name="module_missingyou_sending_success">❤️ Tęsknota wysłana</string>
     <string name="module_missingyou_sending_failed">😢 Nie udało się wysłać tęsknoty</string>
@@ -75,7 +67,6 @@
 
     <!-- Module: Location -->
     <string name="module_location_name">Lokalizacja</string>
-    <string name="module_location_subtitle">Sprawdź gdzie jestem</string>
     <string name="module_location_no_permission">Nie nadano uprawnień do korzystania z lokalizacji</string>
     <string name="module_location_your_location">Twoja lokalizacja</string>
 
@@ -103,13 +94,12 @@
 
     <!-- Content description -->
     <string name="contentDescription_google_icon">Logo Google</string>
-    <string name="contentDescription_karonia_logo">Logo Karonia</string>
+    <string name="contentDescription_karonia_logo">Logo aplikacji</string>
     <string name="contentDescription_module_icon">Moduł %1$s</string>
     <string name="contentDescription_navigate_back">Strzałka nawigacji wstecz</string>
-    <string name="contentDescription_navigate_arrow">Strzałka nawigacji</string>
     <string name="contentDescription_music_icon">Muzyka</string>
     <string name="contentDescription_album_cover">Okładka albumu</string>
-    <string name="contentDescription_download_icon">Pobierania</string>
+    <string name="contentDescription_download_icon">Pobierz</string>
     <string name="contentDescription_trash_icon">Kosz na śmieci</string>
     <string name="contentDescription_warning">Ostrzeżenie</string>
     <string name="contentDescription_settings_icon">Ustawienia</string>
@@ -120,12 +110,10 @@
     <string name="contentDescription_next_track_icon">Następny utwór</string>
     <string name="contentDescription_disc_icon">Płyta</string>
     <string name="contentDescription_memory_photo">Zdjęcie wspomnienia</string>
-    <string name="contentDescription_add_icon">Znak plus</string>
-    <string name="contentDescription_arrow_right">Strzałka w prawo</string>
+    <string name="contentDescription_add_icon">Dodaj</string>
     <string name="contentDescription_cat_icon">Kot</string>
     <string name="contentDescription_sheep_icon">Owca</string>
     <string name="contentDescription_necklace_icon">Naszyjnik</string>
-    <string name="contentDescription_background_flamingo">Flaming w tle</string>
     <string name="contentDescription_calendar">Kalendarz</string>
     <string name="contentDescription_edit_icon">Edytuj</string>
     <string name="contentDescription_delete_icon">Usuń</string>

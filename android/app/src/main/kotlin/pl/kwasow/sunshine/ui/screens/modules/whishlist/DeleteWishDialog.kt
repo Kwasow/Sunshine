@@ -78,7 +78,7 @@ private fun AlertTitle() {
 @Composable
 private fun AlertContent(content: String) {
     Text(
-        text = content,
+        text = stringResource(id = R.string.module_wishlist_delete_dialog_text, content),
         textAlign = TextAlign.Center,
     )
 }

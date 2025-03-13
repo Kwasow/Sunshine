@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import pl.kwasow.sunshine.R
 
 private const val COLUMNS = 9
@@ -29,7 +28,6 @@ fun FlamingoBackground(
     color: Color = Color(0xFFFD7295),
 ) {
     val painter = painterResource(id = R.drawable.ic_flamingo)
-    val description = stringResource(id = R.string.contentDescription_background_flamingo)
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(COLUMNS),
@@ -46,7 +44,7 @@ fun FlamingoBackground(
                 Icon(
                     painter = painter,
                     tint = color,
-                    contentDescription = description,
+                    contentDescription = null,
                     modifier = Modifier.rotate(25f * direction),
                 )
             }
