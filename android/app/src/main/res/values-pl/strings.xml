@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Karonia</string>
-
     <!-- Login -->
     <string name="login_error_no_access">Nie masz uprawnień do korzystania z tej aplikacji. Spróbuj zalogować się innym kontem.</string>
     <string name="login_error_no_connection">Nie udało się połączyć z serwerem.</string>
