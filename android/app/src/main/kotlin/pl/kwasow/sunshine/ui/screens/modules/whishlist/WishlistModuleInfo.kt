@@ -6,6 +6,5 @@ import pl.kwasow.sunshine.ui.screens.modules.ModuleInfo
 val WishlistModuleInfo =
     ModuleInfo(
         R.string.module_wishlist_name,
-        R.string.module_wishlist_subtitle,
         R.drawable.ic_gift,
     )

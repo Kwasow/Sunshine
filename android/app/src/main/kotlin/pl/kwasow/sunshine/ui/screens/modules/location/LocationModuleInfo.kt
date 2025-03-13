@@ -6,6 +6,5 @@ import pl.kwasow.sunshine.ui.screens.modules.ModuleInfo
 val LocationModuleInfo =
     ModuleInfo(
         R.string.module_location_name,
-        R.string.module_location_subtitle,
         R.drawable.ic_location,
     )
