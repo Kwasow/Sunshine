@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Karonia</string>
+    <string name="app_name" translatable="false">Sunshine</string>
 
     <!-- Login -->
     <string name="login_error_no_access">This account is not authorized for this app. Please try a different one.</string>

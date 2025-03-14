@@ -120,6 +120,19 @@ android {
     androidResources {
         generateLocaleConfig = true
     }
+
+    // Specify build flavors
+    flavorDimensions += "version"
+    productFlavors {
+        create("Sunshine") {
+            isDefault = true
+            dimension = "version"
+        }
+
+        create("Karonia") {
+            dimension = "version"
+        }
+    }
 }
 
 dependencies {
