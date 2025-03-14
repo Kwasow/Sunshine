@@ -27,7 +27,7 @@ fun FlamingoBackground(
     modifier: Modifier = Modifier,
     color: Color = Color(0xFFFD7295),
 ) {
-    val painter = painterResource(id = R.drawable.ic_flamingo)
+    val painter = painterResource(id = R.drawable.ic_background_icon)
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(COLUMNS),

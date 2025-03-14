@@ -74,7 +74,7 @@ private fun TopBar(navigateToSettings: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
-            painter = painterResource(id = R.drawable.karonia),
+            painter = painterResource(id = R.drawable.logo),
             contentDescription = stringResource(id = R.string.contentDescription_karonia_logo),
             modifier =
                 Modifier

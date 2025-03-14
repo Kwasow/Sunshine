@@ -71,7 +71,7 @@ private fun MainView() {
                 Modifier
                     .weight(0.5f)
                     .padding(horizontal = 32.dp),
-            painter = painterResource(id = R.drawable.karonia),
+            painter = painterResource(id = R.drawable.logo),
             contentDescription = stringResource(id = R.string.contentDescription_karonia_logo),
         )
         GoogleSignInButton(onClick = { viewModel.launchLogin(navigation.navigateToHome) })
