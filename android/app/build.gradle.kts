@@ -17,11 +17,11 @@ secrets {
 }
 
 android {
-    namespace = "pl.kwasow.sunshine"
+    namespace = "pl.kwasow"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "pl.kwasow.sunshine"
+        applicationId = "pl.kwasow"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
@@ -127,10 +127,14 @@ android {
         create("Flamingo") {
             isDefault = true
             dimension = "version"
+
+            applicationIdSuffix = ".flamingo"
         }
 
         create("Karonia") {
             dimension = "version"
+
+            applicationIdSuffix = ".sunshine"
         }
     }
 }
