@@ -31,7 +31,7 @@ import dev.chrisbanes.haze.materials.ExperimentalHazeMaterialsApi
 import dev.chrisbanes.haze.materials.HazeMaterials
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
-import pl.kwasow.sunshine.ui.components.FlamingoBackgroundLight
+import pl.kwasow.sunshine.ui.components.SunshineBackgroundLight
 import pl.kwasow.sunshine.ui.components.SunshineTopAppBar
 import pl.kwasow.sunshine.ui.components.YearPickerDialog
 import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
@@ -122,7 +122,7 @@ private fun MainView(
 ) {
     val viewModel = koinViewModel<MemoriesModuleViewModel>()
 
-    FlamingoBackgroundLight(
+    SunshineBackgroundLight(
         modifier =
             Modifier
                 .hazeSource(state = hazeState)

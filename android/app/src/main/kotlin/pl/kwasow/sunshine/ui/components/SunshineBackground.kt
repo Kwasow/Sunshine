@@ -15,18 +15,15 @@ import pl.kwasow.sunshine.R
 private const val COLUMNS = 9
 
 @Composable
-fun FlamingoBackgroundLight(modifier: Modifier = Modifier) {
-    FlamingoBackground(
+fun SunshineBackgroundLight(modifier: Modifier = Modifier) {
+    SunshineBackground(
         modifier = modifier,
-        color = Color(0x60FD7295),
+//        color = Color(0x60FD7295),
     )
 }
 
 @Composable
-fun FlamingoBackground(
-    modifier: Modifier = Modifier,
-    color: Color = Color(0xFFFD7295),
-) {
+fun SunshineBackground(modifier: Modifier = Modifier) {
     val painter = painterResource(id = R.drawable.ic_background_icon)
 
     LazyVerticalGrid(
@@ -43,7 +40,7 @@ fun FlamingoBackground(
             if ((row + column) % 2 == 0) {
                 Icon(
                     painter = painter,
-                    tint = color,
+                    tint = Color.Unspecified,
                     contentDescription = null,
                     modifier = Modifier.rotate(25f * direction),
                 )

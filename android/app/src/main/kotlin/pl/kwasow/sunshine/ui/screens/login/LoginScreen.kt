@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.ErrorDialog
-import pl.kwasow.sunshine.ui.components.FlamingoBackground
+import pl.kwasow.sunshine.ui.components.SunshineBackground
 import pl.kwasow.sunshine.ui.components.LoadingView
 import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
@@ -29,7 +29,7 @@ fun LoginScreen() {
     val viewModel = koinViewModel<LoginScreenViewModel>()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        FlamingoBackground(modifier = Modifier)
+        SunshineBackground(modifier = Modifier)
 
         MainView()
 

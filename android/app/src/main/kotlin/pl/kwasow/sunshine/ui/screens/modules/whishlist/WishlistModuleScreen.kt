@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
-import pl.kwasow.sunshine.ui.components.FlamingoBackgroundLight
+import pl.kwasow.sunshine.ui.components.SunshineBackgroundLight
 import pl.kwasow.sunshine.ui.components.SunshineTopAppBar
 import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
@@ -49,7 +49,7 @@ fun WishlistModuleScreen() {
             )
         },
     ) { paddingValues ->
-        FlamingoBackgroundLight(modifier = Modifier.padding(paddingValues))
+        SunshineBackgroundLight(modifier = Modifier.padding(paddingValues))
 
         MainView(paddingValues = paddingValues)
     }

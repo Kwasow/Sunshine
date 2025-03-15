@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.koin.androidx.compose.koinViewModel
-import pl.kwasow.sunshine.ui.components.FlamingoBackgroundLight
+import pl.kwasow.sunshine.ui.components.SunshineBackgroundLight
 import pl.kwasow.sunshine.ui.components.SunshineTopAppBar
 import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
@@ -35,7 +35,7 @@ fun MusicModuleScreen() {
             )
         },
     ) { paddingValues ->
-        FlamingoBackgroundLight(modifier = Modifier.padding(paddingValues))
+        SunshineBackgroundLight(modifier = Modifier.padding(paddingValues))
 
         MainView(paddingValues = paddingValues)
     }
