@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
-import pl.kwasow.sunshine.ui.components.SunshineBackground
 import pl.kwasow.sunshine.ui.components.SunshineBackgroundLight
 import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 

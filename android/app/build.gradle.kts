@@ -124,6 +124,11 @@ android {
     // Specify build flavors
     flavorDimensions += "version"
     productFlavors {
+        create("Flamingo") {
+            isDefault = true
+            dimension = "version"
+        }
+
         create("Karonia") {
             dimension = "version"
         }
