@@ -1,5 +1,6 @@
 package pl.kwasow.sunshine.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -7,6 +8,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -16,10 +18,7 @@ private const val COLUMNS = 9
 
 @Composable
 fun SunshineBackgroundLight(modifier: Modifier = Modifier) {
-    SunshineBackground(
-        modifier = modifier,
-//        color = Color(0x60FD7295),
-    )
+    SunshineBackground(modifier = modifier.alpha(0.35F))
 }
 
 @Composable
@@ -38,9 +37,8 @@ fun SunshineBackground(modifier: Modifier = Modifier) {
             val direction = if (column % 2 == 0) -1 else 1
 
             if ((row + column) % 2 == 0) {
-                Icon(
+                Image(
                     painter = painter,
-                    tint = Color.Unspecified,
                     contentDescription = null,
                     modifier = Modifier.rotate(25f * direction),
                 )

@@ -29,6 +29,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import org.koin.androidx.compose.koinViewModel
 import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.SunshineBackground
+import pl.kwasow.sunshine.ui.components.SunshineBackgroundLight
 import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
@@ -52,7 +53,7 @@ fun HomeScreen() {
 
     Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
         Box(modifier = Modifier.padding(top = paddingValues.calculateTopPadding())) {
-            SunshineBackground()
+            SunshineBackgroundLight()
 
             Column(
                 modifier = Modifier.verticalScroll(rememberScrollState()),
@@ -79,8 +80,7 @@ private fun TopBar(navigateToSettings: () -> Unit) {
             modifier =
                 Modifier
                     .fillMaxWidth(0.45f)
-                    .padding(vertical = 12.dp)
-                    .padding(start = 24.dp),
+                    .padding(vertical = 12.dp),
         )
 
         IconButton(onClick = { navigateToSettings() }) {

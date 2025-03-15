@@ -7,11 +7,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,6 +24,7 @@ import pl.kwasow.sunshine.R
 import pl.kwasow.sunshine.ui.components.ErrorDialog
 import pl.kwasow.sunshine.ui.components.SunshineBackground
 import pl.kwasow.sunshine.ui.components.LoadingView
+import pl.kwasow.sunshine.ui.components.SunshineBackgroundLight
 import pl.kwasow.sunshine.ui.composition.LocalSunshineNavigation
 
 // ====== Public composables
@@ -29,7 +33,7 @@ fun LoginScreen() {
     val viewModel = koinViewModel<LoginScreenViewModel>()
 
     Box(modifier = Modifier.fillMaxSize()) {
-        SunshineBackground(modifier = Modifier)
+        SunshineBackgroundLight()
 
         MainView()
 
@@ -69,11 +73,14 @@ private fun MainView() {
         Image(
             modifier =
                 Modifier
+                    .fillMaxWidth()
                     .weight(0.5f)
                     .padding(horizontal = 32.dp),
             painter = painterResource(id = R.drawable.logo),
             contentDescription = stringResource(id = R.string.contentDescription_karonia_logo),
+            contentScale = ContentScale.FillWidth,
         )
+
         GoogleSignInButton(onClick = { viewModel.launchLogin(navigation.navigateToHome) })
     }
 }
