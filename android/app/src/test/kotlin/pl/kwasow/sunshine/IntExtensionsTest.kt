@@ -2,7 +2,7 @@ package pl.kwasow.sunshine
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import pl.kwasow.sunshine.extensions.roundUpToMultiple
+import pl.kwasow.extensions.roundUpToMultiple
 
 class IntExtensionsTest {
     @Test

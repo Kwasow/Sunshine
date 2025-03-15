@@ -17,11 +17,11 @@ secrets {
 }
 
 android {
-    namespace = "pl.kwasow.sunshine"
+    namespace = "pl.kwasow"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "pl.kwasow.sunshine"
+        applicationId = "pl.kwasow"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
@@ -90,15 +90,6 @@ android {
         }
     }
 
-    signingConfigs {
-        getByName("debug") {
-            storeFile = file("debug.keystore")
-            storePassword = "android"
-            keyAlias = "androiddebugkey"
-            keyPassword = "android"
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -119,6 +110,23 @@ android {
 
     androidResources {
         generateLocaleConfig = true
+    }
+
+    // Specify build flavors
+    flavorDimensions += "version"
+    productFlavors {
+        create("Flamingo") {
+            isDefault = true
+            dimension = "version"
+
+            applicationIdSuffix = ".flamingo"
+        }
+
+        create("Karonia") {
+            dimension = "version"
+
+            applicationIdSuffix = ".sunshine"
+        }
     }
 }
 
